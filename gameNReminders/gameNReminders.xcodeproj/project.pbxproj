@@ -1,0 +1,752 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AC3DA0DBB36DEFEE747A3594 /* Pods_gameNRemindersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B06B38F429E209EAB57EEFF4 /* Pods_gameNRemindersTests.framework */; };
+		D4FE61E628D13349077F25EF /* Pods_gameNReminders_gameNRemindersUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D585FCCC2769023629838C75 /* Pods_gameNReminders_gameNRemindersUITests.framework */; };
+		EA877DA92355CA7A39F978A7 /* Pods_gameNReminders.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C71B00BC49F7804A3F2721E /* Pods_gameNReminders.framework */; };
+		FF507940255FD26E00E5EE30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF50793F255FD26E00E5EE30 /* AppDelegate.swift */; };
+		FF507942255FD26E00E5EE30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF507941255FD26E00E5EE30 /* SceneDelegate.swift */; };
+		FF507944255FD26E00E5EE30 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF507943255FD26E00E5EE30 /* ListViewController.swift */; };
+		FF507949255FD26F00E5EE30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF507948255FD26F00E5EE30 /* Assets.xcassets */; };
+		FF50794C255FD26F00E5EE30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF50794A255FD26F00E5EE30 /* LaunchScreen.storyboard */; };
+		FF507957255FD27000E5EE30 /* gameNRemindersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF507956255FD27000E5EE30 /* gameNRemindersTests.swift */; };
+		FF507962255FD27000E5EE30 /* gameNRemindersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF507961255FD27000E5EE30 /* gameNRemindersUITests.swift */; };
+		FF50798925602CFA00E5EE30 /* NumberGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF50798825602CFA00E5EE30 /* NumberGame.swift */; };
+		FF5079A72560F9F500E5EE30 /* inputNumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5079A62560F9F500E5EE30 /* inputNumViewController.swift */; };
+		FF5079AC256191A800E5EE30 /* Reminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5079AB256191A800E5EE30 /* Reminders.swift */; };
+		FF5079B42562129200E5EE30 /* ReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5079B32562129200E5EE30 /* ReminderCell.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FF507953255FD27000E5EE30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF507934255FD26E00E5EE30 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FF50793B255FD26E00E5EE30;
+			remoteInfo = gameNReminders;
+		};
+		FF50795E255FD27000E5EE30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF507934255FD26E00E5EE30 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FF50793B255FD26E00E5EE30;
+			remoteInfo = gameNReminders;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		15E3093069D8B84D5723D713 /* Pods-gameNReminders-gameNRemindersUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gameNReminders-gameNRemindersUITests.debug.xcconfig"; path = "Target Support Files/Pods-gameNReminders-gameNRemindersUITests/Pods-gameNReminders-gameNRemindersUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		2C71B00BC49F7804A3F2721E /* Pods_gameNReminders.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gameNReminders.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		431006029A88F5475D178A5D /* Pods-gameNReminders.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gameNReminders.debug.xcconfig"; path = "Target Support Files/Pods-gameNReminders/Pods-gameNReminders.debug.xcconfig"; sourceTree = "<group>"; };
+		5C2B7D1646660E0ABEED25EB /* Pods-gameNRemindersTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gameNRemindersTests.debug.xcconfig"; path = "Target Support Files/Pods-gameNRemindersTests/Pods-gameNRemindersTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8BC749E3BAEA04A8B7AE3F94 /* Pods-gameNReminders-gameNRemindersUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gameNReminders-gameNRemindersUITests.release.xcconfig"; path = "Target Support Files/Pods-gameNReminders-gameNRemindersUITests/Pods-gameNReminders-gameNRemindersUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B06B38F429E209EAB57EEFF4 /* Pods_gameNRemindersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gameNRemindersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D585FCCC2769023629838C75 /* Pods_gameNReminders_gameNRemindersUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gameNReminders_gameNRemindersUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA52961A7064D5597E58514A /* Pods-gameNReminders.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gameNReminders.release.xcconfig"; path = "Target Support Files/Pods-gameNReminders/Pods-gameNReminders.release.xcconfig"; sourceTree = "<group>"; };
+		EB18C786705187D650385AE2 /* Pods-gameNRemindersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gameNRemindersTests.release.xcconfig"; path = "Target Support Files/Pods-gameNRemindersTests/Pods-gameNRemindersTests.release.xcconfig"; sourceTree = "<group>"; };
+		FF50793C255FD26E00E5EE30 /* gameNReminders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gameNReminders.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF50793F255FD26E00E5EE30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FF507941255FD26E00E5EE30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		FF507943255FD26E00E5EE30 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		FF507948255FD26F00E5EE30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FF50794B255FD26F00E5EE30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FF50794D255FD26F00E5EE30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF507952255FD27000E5EE30 /* gameNRemindersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = gameNRemindersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF507956255FD27000E5EE30 /* gameNRemindersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameNRemindersTests.swift; sourceTree = "<group>"; };
+		FF507958255FD27000E5EE30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF50795D255FD27000E5EE30 /* gameNRemindersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = gameNRemindersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF507961255FD27000E5EE30 /* gameNRemindersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameNRemindersUITests.swift; sourceTree = "<group>"; };
+		FF507963255FD27000E5EE30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF50798825602CFA00E5EE30 /* NumberGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberGame.swift; sourceTree = "<group>"; };
+		FF5079A62560F9F500E5EE30 /* inputNumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = inputNumViewController.swift; sourceTree = "<group>"; };
+		FF5079AB256191A800E5EE30 /* Reminders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminders.swift; sourceTree = "<group>"; };
+		FF5079B32562129200E5EE30 /* ReminderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderCell.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FF507939255FD26E00E5EE30 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA877DA92355CA7A39F978A7 /* Pods_gameNReminders.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF50794F255FD27000E5EE30 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC3DA0DBB36DEFEE747A3594 /* Pods_gameNRemindersTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF50795A255FD27000E5EE30 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4FE61E628D13349077F25EF /* Pods_gameNReminders_gameNRemindersUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0E9D34EAEFF114E19E4F6D90 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2C71B00BC49F7804A3F2721E /* Pods_gameNReminders.framework */,
+				D585FCCC2769023629838C75 /* Pods_gameNReminders_gameNRemindersUITests.framework */,
+				B06B38F429E209EAB57EEFF4 /* Pods_gameNRemindersTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9F7CD1374DA2CBCB5C8BB7D1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				431006029A88F5475D178A5D /* Pods-gameNReminders.debug.xcconfig */,
+				DA52961A7064D5597E58514A /* Pods-gameNReminders.release.xcconfig */,
+				15E3093069D8B84D5723D713 /* Pods-gameNReminders-gameNRemindersUITests.debug.xcconfig */,
+				8BC749E3BAEA04A8B7AE3F94 /* Pods-gameNReminders-gameNRemindersUITests.release.xcconfig */,
+				5C2B7D1646660E0ABEED25EB /* Pods-gameNRemindersTests.debug.xcconfig */,
+				EB18C786705187D650385AE2 /* Pods-gameNRemindersTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		FF507933255FD26E00E5EE30 = {
+			isa = PBXGroup;
+			children = (
+				FF50793E255FD26E00E5EE30 /* gameNReminders */,
+				FF507955255FD27000E5EE30 /* gameNRemindersTests */,
+				FF507960255FD27000E5EE30 /* gameNRemindersUITests */,
+				FF50793D255FD26E00E5EE30 /* Products */,
+				9F7CD1374DA2CBCB5C8BB7D1 /* Pods */,
+				0E9D34EAEFF114E19E4F6D90 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		FF50793D255FD26E00E5EE30 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FF50793C255FD26E00E5EE30 /* gameNReminders.app */,
+				FF507952255FD27000E5EE30 /* gameNRemindersTests.xctest */,
+				FF50795D255FD27000E5EE30 /* gameNRemindersUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FF50793E255FD26E00E5EE30 /* gameNReminders */ = {
+			isa = PBXGroup;
+			children = (
+				FF50793F255FD26E00E5EE30 /* AppDelegate.swift */,
+				FF507941255FD26E00E5EE30 /* SceneDelegate.swift */,
+				FF507943255FD26E00E5EE30 /* ListViewController.swift */,
+				FF50798825602CFA00E5EE30 /* NumberGame.swift */,
+				FF5079A62560F9F500E5EE30 /* inputNumViewController.swift */,
+				FF5079AB256191A800E5EE30 /* Reminders.swift */,
+				FF5079B32562129200E5EE30 /* ReminderCell.swift */,
+				FF507948255FD26F00E5EE30 /* Assets.xcassets */,
+				FF50794A255FD26F00E5EE30 /* LaunchScreen.storyboard */,
+				FF50794D255FD26F00E5EE30 /* Info.plist */,
+			);
+			path = gameNReminders;
+			sourceTree = "<group>";
+		};
+		FF507955255FD27000E5EE30 /* gameNRemindersTests */ = {
+			isa = PBXGroup;
+			children = (
+				FF507956255FD27000E5EE30 /* gameNRemindersTests.swift */,
+				FF507958255FD27000E5EE30 /* Info.plist */,
+			);
+			path = gameNRemindersTests;
+			sourceTree = "<group>";
+		};
+		FF507960255FD27000E5EE30 /* gameNRemindersUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FF507961255FD27000E5EE30 /* gameNRemindersUITests.swift */,
+				FF507963255FD27000E5EE30 /* Info.plist */,
+			);
+			path = gameNRemindersUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FF50793B255FD26E00E5EE30 /* gameNReminders */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF507966255FD27000E5EE30 /* Build configuration list for PBXNativeTarget "gameNReminders" */;
+			buildPhases = (
+				92F8D37F8BD74F84DE85F917 /* [CP] Check Pods Manifest.lock */,
+				FF507938255FD26E00E5EE30 /* Sources */,
+				FF507939255FD26E00E5EE30 /* Frameworks */,
+				FF50793A255FD26E00E5EE30 /* Resources */,
+				2FCD856F23F9B648835CE577 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = gameNReminders;
+			productName = gameNReminders;
+			productReference = FF50793C255FD26E00E5EE30 /* gameNReminders.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FF507951255FD27000E5EE30 /* gameNRemindersTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF507969255FD27000E5EE30 /* Build configuration list for PBXNativeTarget "gameNRemindersTests" */;
+			buildPhases = (
+				881F29DE424F543AB5C7724B /* [CP] Check Pods Manifest.lock */,
+				FF50794E255FD27000E5EE30 /* Sources */,
+				FF50794F255FD27000E5EE30 /* Frameworks */,
+				FF507950255FD27000E5EE30 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FF507954255FD27000E5EE30 /* PBXTargetDependency */,
+			);
+			name = gameNRemindersTests;
+			productName = gameNRemindersTests;
+			productReference = FF507952255FD27000E5EE30 /* gameNRemindersTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FF50795C255FD27000E5EE30 /* gameNRemindersUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF50796C255FD27000E5EE30 /* Build configuration list for PBXNativeTarget "gameNRemindersUITests" */;
+			buildPhases = (
+				1B808CC9D3F3449992690CAD /* [CP] Check Pods Manifest.lock */,
+				FF507959255FD27000E5EE30 /* Sources */,
+				FF50795A255FD27000E5EE30 /* Frameworks */,
+				FF50795B255FD27000E5EE30 /* Resources */,
+				991BCD5D773F716CD195ACB6 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FF50795F255FD27000E5EE30 /* PBXTargetDependency */,
+			);
+			name = gameNRemindersUITests;
+			productName = gameNRemindersUITests;
+			productReference = FF50795D255FD27000E5EE30 /* gameNRemindersUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FF507934255FD26E00E5EE30 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1210;
+				LastUpgradeCheck = 1210;
+				TargetAttributes = {
+					FF50793B255FD26E00E5EE30 = {
+						CreatedOnToolsVersion = 12.1;
+					};
+					FF507951255FD27000E5EE30 = {
+						CreatedOnToolsVersion = 12.1;
+						TestTargetID = FF50793B255FD26E00E5EE30;
+					};
+					FF50795C255FD27000E5EE30 = {
+						CreatedOnToolsVersion = 12.1;
+						TestTargetID = FF50793B255FD26E00E5EE30;
+					};
+				};
+			};
+			buildConfigurationList = FF507937255FD26E00E5EE30 /* Build configuration list for PBXProject "gameNReminders" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FF507933255FD26E00E5EE30;
+			productRefGroup = FF50793D255FD26E00E5EE30 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FF50793B255FD26E00E5EE30 /* gameNReminders */,
+				FF507951255FD27000E5EE30 /* gameNRemindersTests */,
+				FF50795C255FD27000E5EE30 /* gameNRemindersUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FF50793A255FD26E00E5EE30 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF50794C255FD26F00E5EE30 /* LaunchScreen.storyboard in Resources */,
+				FF507949255FD26F00E5EE30 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF507950255FD27000E5EE30 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF50795B255FD27000E5EE30 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1B808CC9D3F3449992690CAD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-gameNReminders-gameNRemindersUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2FCD856F23F9B648835CE577 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-gameNReminders/Pods-gameNReminders-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-gameNReminders/Pods-gameNReminders-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-gameNReminders/Pods-gameNReminders-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		881F29DE424F543AB5C7724B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-gameNRemindersTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		92F8D37F8BD74F84DE85F917 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-gameNReminders-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		991BCD5D773F716CD195ACB6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-gameNReminders-gameNRemindersUITests/Pods-gameNReminders-gameNRemindersUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-gameNReminders-gameNRemindersUITests/Pods-gameNReminders-gameNRemindersUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-gameNReminders-gameNRemindersUITests/Pods-gameNReminders-gameNRemindersUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FF507938255FD26E00E5EE30 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF507944255FD26E00E5EE30 /* ListViewController.swift in Sources */,
+				FF507940255FD26E00E5EE30 /* AppDelegate.swift in Sources */,
+				FF5079A72560F9F500E5EE30 /* inputNumViewController.swift in Sources */,
+				FF5079B42562129200E5EE30 /* ReminderCell.swift in Sources */,
+				FF5079AC256191A800E5EE30 /* Reminders.swift in Sources */,
+				FF50798925602CFA00E5EE30 /* NumberGame.swift in Sources */,
+				FF507942255FD26E00E5EE30 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF50794E255FD27000E5EE30 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF507957255FD27000E5EE30 /* gameNRemindersTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF507959255FD27000E5EE30 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF507962255FD27000E5EE30 /* gameNRemindersUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FF507954255FD27000E5EE30 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FF50793B255FD26E00E5EE30 /* gameNReminders */;
+			targetProxy = FF507953255FD27000E5EE30 /* PBXContainerItemProxy */;
+		};
+		FF50795F255FD27000E5EE30 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FF50793B255FD26E00E5EE30 /* gameNReminders */;
+			targetProxy = FF50795E255FD27000E5EE30 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FF50794A255FD26F00E5EE30 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FF50794B255FD26F00E5EE30 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FF507964255FD27000E5EE30 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FF507965255FD27000E5EE30 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FF507967255FD27000E5EE30 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 431006029A88F5475D178A5D /* Pods-gameNReminders.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = gameNReminders/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = selfProject.gameNReminders;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		FF507968255FD27000E5EE30 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DA52961A7064D5597E58514A /* Pods-gameNReminders.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = gameNReminders/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = selfProject.gameNReminders;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		FF50796A255FD27000E5EE30 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C2B7D1646660E0ABEED25EB /* Pods-gameNRemindersTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = gameNRemindersTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = selfProject.gameNRemindersTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/gameNReminders.app/gameNReminders";
+			};
+			name = Debug;
+		};
+		FF50796B255FD27000E5EE30 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EB18C786705187D650385AE2 /* Pods-gameNRemindersTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = gameNRemindersTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = selfProject.gameNRemindersTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/gameNReminders.app/gameNReminders";
+			};
+			name = Release;
+		};
+		FF50796D255FD27000E5EE30 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 15E3093069D8B84D5723D713 /* Pods-gameNReminders-gameNRemindersUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = gameNRemindersUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = selfProject.gameNRemindersUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = gameNReminders;
+			};
+			name = Debug;
+		};
+		FF50796E255FD27000E5EE30 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8BC749E3BAEA04A8B7AE3F94 /* Pods-gameNReminders-gameNRemindersUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = gameNRemindersUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = selfProject.gameNRemindersUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = gameNReminders;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FF507937255FD26E00E5EE30 /* Build configuration list for PBXProject "gameNReminders" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF507964255FD27000E5EE30 /* Debug */,
+				FF507965255FD27000E5EE30 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF507966255FD27000E5EE30 /* Build configuration list for PBXNativeTarget "gameNReminders" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF507967255FD27000E5EE30 /* Debug */,
+				FF507968255FD27000E5EE30 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF507969255FD27000E5EE30 /* Build configuration list for PBXNativeTarget "gameNRemindersTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF50796A255FD27000E5EE30 /* Debug */,
+				FF50796B255FD27000E5EE30 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF50796C255FD27000E5EE30 /* Build configuration list for PBXNativeTarget "gameNRemindersUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF50796D255FD27000E5EE30 /* Debug */,
+				FF50796E255FD27000E5EE30 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FF507934255FD26E00E5EE30 /* Project object */;
+}
