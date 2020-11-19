@@ -35,25 +35,81 @@ class inputNumViewController: UIViewController {
     let ad = UIApplication.shared.delegate as? AppDelegate
     var delegate: inputNumDelegate?
     var result = ""
+    lazy var width = 0
+    lazy var height = 0
+    lazy var margin = self.view.layoutMarginsGuide
 
     override func viewDidLoad() {
+
         self.view.backgroundColor = .white
+
         self.view.addSubview(currentTitle)
         self.view.addSubview(currentValue)
         self.view.addSubview(correctTitle)
         self.view.addSubview(correctRange)
-        self.view.addSubview(one)
-        self.view.addSubview(two)
-        self.view.addSubview(thr)
-        self.view.addSubview(four)
-        self.view.addSubview(five)
-        self.view.addSubview(six)
-        self.view.addSubview(sev)
-        self.view.addSubview(eig)
-        self.view.addSubview(nine)
-        self.view.addSubview(delete)
-        self.view.addSubview(zero)
-        self.view.addSubview(done)
+
+        //MARK:-- Keypad StackView 구문
+
+        let containerRow = stackViewFactory(type: .vertical)
+        let row1 = stackViewFactory(type: .horizontal)
+        let row2 = stackViewFactory(type: .horizontal)
+        let row3 = stackViewFactory(type: .horizontal)
+        let row4 = stackViewFactory(type: .horizontal)
+
+        self.view.addSubview(containerRow)
+        containerRow.widthAnchor.constraint(equalTo: margin.widthAnchor).isActive = true
+        containerRow.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.55).isActive = true
+        containerRow.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        containerRow.bottomAnchor.constraint(equalTo: margin.bottomAnchor, constant: -10).isActive = true
+
+        row1.addArrangedSubview(one)
+        row1.addArrangedSubview(two)
+        row1.addArrangedSubview(thr)
+
+        row2.addArrangedSubview(four)
+        row2.addArrangedSubview(five)
+        row2.addArrangedSubview(six)
+
+        row3.addArrangedSubview(sev)
+        row3.addArrangedSubview(eig)
+        row3.addArrangedSubview(nine)
+
+        row4.addArrangedSubview(delete)
+        row4.addArrangedSubview(zero)
+        row4.addArrangedSubview(done)
+
+        containerRow.addArrangedSubview(row1)
+        containerRow.addArrangedSubview(row2)
+        containerRow.addArrangedSubview(row3)
+        containerRow.addArrangedSubview(row4)
+
+        row1.widthAnchor.constraint(equalTo: containerRow.widthAnchor).isActive = true
+        row1.heightAnchor.constraint(equalTo: containerRow.heightAnchor, multiplier: 0.25, constant: -10).isActive = true
+        row1.bottomAnchor.constraint(equalTo: row2.topAnchor, constant: -10).isActive = true
+
+        row2.bottomAnchor.constraint(equalTo: row3.topAnchor, constant: -10).isActive = true
+        row2.centerXAnchor.constraint(equalTo: containerRow.centerXAnchor).isActive = true
+        row2.widthAnchor.constraint(equalTo: row1.widthAnchor).isActive = true
+        row2.heightAnchor.constraint(equalTo: row1.heightAnchor).isActive = true
+
+        row3.bottomAnchor.constraint(equalTo: row4.topAnchor, constant: -10).isActive = true
+        row3.centerXAnchor.constraint(equalTo: containerRow.centerXAnchor).isActive = true
+        row3.widthAnchor.constraint(equalTo: row2.widthAnchor).isActive = true
+        row3.heightAnchor.constraint(equalTo: row2.heightAnchor).isActive = true
+
+        row4.bottomAnchor.constraint(equalTo: containerRow.bottomAnchor, constant: 10).isActive = true
+        row4.widthAnchor.constraint(equalTo: row3.widthAnchor).isActive = true
+        row4.heightAnchor.constraint(equalTo: row3.heightAnchor).isActive = true
+
+        func stackSubViewsLayout(row: UIStackView) {
+            for i in 0...2 {
+                row.arrangedSubviews[i].heightAnchor.constraint(equalTo: containerRow.heightAnchor, multiplier: 0.25, constant: -10).isActive = true
+            }
+        }
+        stackSubViewsLayout(row: row1)
+        stackSubViewsLayout(row: row2)
+        stackSubViewsLayout(row: row3)
+        stackSubViewsLayout(row: row4)
 
         currentTitleLayout()
         currentValueLayout()
@@ -114,7 +170,7 @@ class inputNumViewController: UIViewController {
 
     func currentValueLayout() {
         currentValue.text = ""
-        currentValue.font.withSize(30)
+        currentValue.font = UIFont.boldSystemFont(ofSize: 30)
         currentValue.textColor = .black
         currentValue.textAlignment = .center
         currentValue.snp.makeConstraints() {
@@ -137,7 +193,7 @@ class inputNumViewController: UIViewController {
 
     func correctRangeLayout() {
         correctRange.text = "0 ~ 100"
-        currentValue.font.withSize(30)
+        correctRange.font = UIFont.boldSystemFont(ofSize: 30)
         correctRange.textColor = .black
         correctRange.textAlignment = .center
         correctRange.snp.makeConstraints() {
@@ -146,159 +202,64 @@ class inputNumViewController: UIViewController {
             $0.height.equalTo(30)
         }
     }
-/*
-    func stackView(type: NSLayoutConstraint.Axis) -> UIStackView {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.alignment = .center
-        stack.distribution = .equalSpacing
-        stack.spacing = space
+    //MARK:-- Keypad Layout
+    func stackViewFactory(type: NSLayoutConstraint.Axis) -> UIStackView {
+        let row = UIStackView()
+        row.alignment = .center
+        row.distribution = .fillEqually
+        row.spacing = 10
+        row.translatesAutoresizingMaskIntoConstraints = false
 
-        stack.addArrangedSubview(one)
-        stack.addArrangedSubview(two)
-        stack.addArrangedSubview(thr)
-        stack.addArrangedSubview(four)
-        stack.addArrangedSubview(five)
-        stack.addArrangedSubview(six)
-        stack.addArrangedSubview(sev)
-        stack.addArrangedSubview(eig)
-        stack.addArrangedSubview(nine)
-        stack.addArrangedSubview(delete)
-        stack.addArrangedSubview(zero)
-        stack.addArrangedSubview(done)
-
-        return stack
+        return row
     }
-*/
+
     func oneLayout() {
         one.setTitle("1", for: .normal)
         one.setTitleColor(.systemBlue, for: .normal)
-        one.contentHorizontalAlignment = .center
-        one.snp.makeConstraints() {
-            $0.top.equalToSuperview().offset(300)
-            $0.leading.equalToSuperview().offset(30)
-            $0.trailing.equalTo(two.snp.leading).offset(10)
-            $0.width.equalTo(two.snp.width)
-            $0.height.equalTo(four.snp.height)
-            $0.bottom.equalTo(four.snp.top).offset(10)
-        }
     }
     func twoLayout() {
         two.setTitle("2", for: .normal)
         two.setTitleColor(.systemBlue, for: .normal)
-        two.snp.makeConstraints() {
-            $0.top.equalToSuperview().offset(300)
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(thr.snp.width)
-            $0.height.equalTo(five.snp.height)
-            $0.bottom.equalTo(five.snp.top).offset(10)
-        }
     }
     func thrLayout() {
         thr.setTitle("3", for: .normal)
         thr.setTitleColor(.systemBlue, for: .normal)
-        thr.snp.makeConstraints() {
-            $0.top.equalToSuperview().offset(300)
-            $0.leading.equalTo(two.snp.trailing).offset(-10)
-            $0.height.equalTo(six.snp.height)
-            $0.bottom.equalTo(six.snp.top).offset(10)
-        }
     }
     func fourLayout() {
         four.setTitle("4", for: .normal)
         four.setTitleColor(.systemBlue, for: .normal)
-        four.snp.makeConstraints() {
-            $0.top.equalTo(one.snp.bottom).offset(10)
-            $0.leading.equalToSuperview().offset(30)
-            $0.trailing.equalTo(five.snp.leading).offset(10)
-            $0.width.equalTo(five.snp.width)
-            $0.height.equalTo(sev.snp.height)
-            $0.bottom.equalTo(sev.snp.top).offset(10)
-        }
     }
     func fiveLayout() {
         five.setTitle("5", for: .normal)
         five.setTitleColor(.systemBlue, for: .normal)
-        five.snp.makeConstraints() {
-            $0.top.equalTo(two.snp.bottom).offset(10)
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(six.snp.width)
-            $0.height.equalTo(eig.snp.height)
-            $0.bottom.equalTo(eig.snp.top).offset(10)
-        }
     }
     func sixLayout() {
         six.setTitle("6", for: .normal)
         six.setTitleColor(.systemBlue, for: .normal)
-        six.snp.makeConstraints() {
-            $0.top.equalTo(thr.snp.bottom).offset(10)
-            $0.leading.equalTo(five.snp.trailing).offset(-10)
-            $0.height.equalTo(nine.snp.height)
-            $0.bottom.equalTo(nine.snp.top).offset(10)
-        }
     }
     func sevLayout() {
         sev.setTitle("7", for: .normal)
         sev.setTitleColor(.systemBlue, for: .normal)
-        sev.snp.makeConstraints() {
-            $0.top.equalTo(four.snp.bottom).offset(10)
-            $0.leading.equalToSuperview().offset(30)
-            $0.trailing.equalTo(eig.snp.leading).offset(10)
-            $0.width.equalTo(five.snp.width)
-            $0.height.equalTo(delete.snp.height)
-            $0.bottom.equalTo(delete.snp.top).offset(10)
-        }
     }
     func eigLayout() {
         eig.setTitle("8", for: .normal)
         eig.setTitleColor(.systemBlue, for: .normal)
-        eig.snp.makeConstraints() {
-            $0.top.equalTo(five.snp.bottom).offset(10)
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(nine.snp.width)
-            $0.height.equalTo(zero.snp.height)
-            $0.bottom.equalTo(zero.snp.top).offset(10)
-        }
     }
     func nineLayout() {
         nine.setTitle("9", for: .normal)
         nine.setTitleColor(.systemBlue, for: .normal)
-        nine.snp.makeConstraints() {
-            $0.top.equalTo(six.snp.bottom).offset(10)
-            $0.leading.equalTo(eig.snp.trailing).offset(-10)
-            $0.height.equalTo(done.snp.height)
-            $0.bottom.equalTo(done.snp.top).offset(10)
-        }
     }
     func deleteLayout() {
         delete.setTitle("Delete", for: .normal)
         delete.setTitleColor(.systemBlue, for: .normal)
-        delete.snp.makeConstraints() {
-            $0.top.equalTo(sev.snp.bottom).offset(10)
-            $0.leading.equalToSuperview().offset(30)
-            $0.trailing.equalTo(zero.snp.leading).offset(10)
-            $0.width.equalTo(zero.snp.width)
-            $0.bottom.equalToSuperview().offset(-50)
-        }
     }
     func zeroLayout() {
         zero.setTitle("0", for: .normal)
         zero.setTitleColor(.systemBlue, for: .normal)
-        zero.snp.makeConstraints() {
-            $0.top.equalTo(eig.snp.bottom).offset(10)
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(done.snp.width)
-            $0.bottom.equalToSuperview().offset(-50)
-        }
     }
     func doneLayout() {
         done.setTitle("Done", for: .normal)
         done.setTitleColor(.systemBlue, for: .normal)
-        done.snp.makeConstraints() {
-            $0.top.equalTo(nine.snp.bottom).offset(10)
-            $0.leading.equalTo(zero.snp.trailing).offset(-10)
-            $0.bottom.equalToSuperview().offset(-50)
-        }
     }
 
     @objc func oneAction() {
@@ -376,10 +337,17 @@ class inputNumViewController: UIViewController {
     }
     @objc func doneAction() {
         guard let number = Int(self.currentValue.text ?? "") else {
+            self.dismiss(animated: true)
             return
         }
+        //MARK:-- 왜 안돼
         self.delegate?.didInputed(number: number)       //동작안함
         self.ad?.paramValue = number
+        let vc = UIViewController() as? NumberGame
+        vc?.inputNum.text = String(number)
+        print(vc?.inputNum.text)
+
         self.dismiss(animated: true)
+
     }
 }

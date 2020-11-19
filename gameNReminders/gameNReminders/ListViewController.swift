@@ -33,9 +33,7 @@ class ListViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableview.dequeueReusableCell(withIdentifier: "cell")!
-
         cell.textLabel?.text = list[indexPath.row]
-
         return cell
 
     }

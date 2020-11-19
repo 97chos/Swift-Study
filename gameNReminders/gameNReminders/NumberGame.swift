@@ -17,6 +17,8 @@ class NumberGame: UIViewController, UITextFieldDelegate {
     var randNum = arc4random_uniform(100)
     var compareNum: Int = 0
     var failCount = 0
+    let ad = UIApplication.shared.delegate as? AppDelegate
+
 
     override func viewDidLoad() {
         self.view.backgroundColor = .white
@@ -35,8 +37,10 @@ class NumberGame: UIViewController, UITextFieldDelegate {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        
         if inputNum.text != "" {
             compareNum = Int(inputNum.text!)!
+            print(compareNum)
 
             if compareNum > randNum {
                 result.text = "Down"
