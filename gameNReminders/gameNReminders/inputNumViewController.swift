@@ -35,8 +35,6 @@ class inputNumViewController: UIViewController {
     let ad = UIApplication.shared.delegate as? AppDelegate
     var delegate: inputNumDelegate?
     var result = ""
-    lazy var width = 0
-    lazy var height = 0
     lazy var margin = self.view.layoutMarginsGuide
 
     override func viewDidLoad() {
@@ -51,6 +49,7 @@ class inputNumViewController: UIViewController {
         //MARK:-- Keypad StackView 구문
 
         let containerRow = stackViewFactory(type: .vertical)
+        containerRow.axis = .vertical
         let row1 = stackViewFactory(type: .horizontal)
         let row2 = stackViewFactory(type: .horizontal)
         let row3 = stackViewFactory(type: .horizontal)
@@ -82,34 +81,6 @@ class inputNumViewController: UIViewController {
         containerRow.addArrangedSubview(row2)
         containerRow.addArrangedSubview(row3)
         containerRow.addArrangedSubview(row4)
-
-        row1.widthAnchor.constraint(equalTo: containerRow.widthAnchor).isActive = true
-        row1.heightAnchor.constraint(equalTo: containerRow.heightAnchor, multiplier: 0.25, constant: -10).isActive = true
-        row1.bottomAnchor.constraint(equalTo: row2.topAnchor, constant: -10).isActive = true
-
-        row2.bottomAnchor.constraint(equalTo: row3.topAnchor, constant: -10).isActive = true
-        row2.centerXAnchor.constraint(equalTo: containerRow.centerXAnchor).isActive = true
-        row2.widthAnchor.constraint(equalTo: row1.widthAnchor).isActive = true
-        row2.heightAnchor.constraint(equalTo: row1.heightAnchor).isActive = true
-
-        row3.bottomAnchor.constraint(equalTo: row4.topAnchor, constant: -10).isActive = true
-        row3.centerXAnchor.constraint(equalTo: containerRow.centerXAnchor).isActive = true
-        row3.widthAnchor.constraint(equalTo: row2.widthAnchor).isActive = true
-        row3.heightAnchor.constraint(equalTo: row2.heightAnchor).isActive = true
-
-        row4.bottomAnchor.constraint(equalTo: containerRow.bottomAnchor, constant: 10).isActive = true
-        row4.widthAnchor.constraint(equalTo: row3.widthAnchor).isActive = true
-        row4.heightAnchor.constraint(equalTo: row3.heightAnchor).isActive = true
-
-        func stackSubViewsLayout(row: UIStackView) {
-            for i in 0...2 {
-                row.arrangedSubviews[i].heightAnchor.constraint(equalTo: containerRow.heightAnchor, multiplier: 0.25, constant: -10).isActive = true
-            }
-        }
-        stackSubViewsLayout(row: row1)
-        stackSubViewsLayout(row: row2)
-        stackSubViewsLayout(row: row3)
-        stackSubViewsLayout(row: row4)
 
         currentTitleLayout()
         currentValueLayout()
@@ -205,7 +176,8 @@ class inputNumViewController: UIViewController {
     //MARK:-- Keypad Layout
     func stackViewFactory(type: NSLayoutConstraint.Axis) -> UIStackView {
         let row = UIStackView()
-        row.alignment = .center
+        row.axis = .horizontal
+        row.alignment = .fill
         row.distribution = .fillEqually
         row.spacing = 10
         row.translatesAutoresizingMaskIntoConstraints = false
