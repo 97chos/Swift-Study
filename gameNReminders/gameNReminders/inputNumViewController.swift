@@ -114,18 +114,13 @@ class inputNumViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        var adMin = (ad?.paramMin)!
-        var adMax = (ad?.paramMax)!
-        let adValue = (ad?.paramValue)!
 
-        if result == "Up" && adMin < adValue {
-            adMin = adValue
-            ad?.paramMin = adValue
-        } else if result == "Down" && adMax > adValue {
-            adMax = adValue
-            ad?.paramMin = adValue
+        if result == "Up" && (ad?.paramMin)! < (ad?.paramValue)! {
+            ad?.paramMin = (ad?.paramValue)!
+        } else if result == "Down" && (ad?.paramMax)! > (ad?.paramValue)! {
+            ad?.paramMax = (ad?.paramValue)!
         }
-        correctRange.text = "\(adMin) ~ \(adMax)"
+        correctRange.text = "\((ad?.paramMin)!) ~ \((ad?.paramMax)!)"
     }
 
     func currentTitleLayout() {
@@ -313,11 +308,8 @@ class inputNumViewController: UIViewController {
             return
         }
 
-        self.delegate?.didInputed(number: number)       //동작안함
+        self.delegate?.didInputed(number: number)
         self.ad?.paramValue = number
-        let vc = UIViewController() as? NumberGame
-        vc?.inputNum.text = String(number)
-        print(vc?.inputNum.text)
 
         self.dismiss(animated: true)
 
