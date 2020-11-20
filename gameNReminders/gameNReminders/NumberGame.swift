@@ -99,7 +99,6 @@ class NumberGame: UIViewController, UITextFieldDelegate {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(self.nthfail.snp.bottom).offset(25)
         }
-
     }
 
     @objc func resetAction() {
@@ -116,11 +115,11 @@ class NumberGame: UIViewController, UITextFieldDelegate {
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
         let ivc = inputNumViewController()
-
         if result.text != nil {
             ivc.result = self.result.text!
         }
         ivc.modalPresentationStyle = .fullScreen
+        ivc.delegate = self
         self.inputNum.resignFirstResponder()
         self.present(ivc, animated: true)
     }

@@ -312,7 +312,7 @@ class inputNumViewController: UIViewController {
             self.dismiss(animated: true)
             return
         }
-        //MARK:-- 왜 안돼
+
         self.delegate?.didInputed(number: number)       //동작안함
         self.ad?.paramValue = number
         let vc = UIViewController() as? NumberGame
