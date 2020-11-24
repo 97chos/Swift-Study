@@ -15,10 +15,11 @@ class RemindersViewController: UIViewController, UITableViewDelegate {
     var addView = UIView()
     var addbutton = UIButton()
     var data = [String]()
+    
 
     override func viewDidLoad() {
         List = UITableView(frame: self.view.bounds, style: UITableView.Style.plain)
-        List.backgroundColor = UIColor.white
+        List.backgroundColor = .systemTeal
         List.register(ReminderCell.self, forCellReuseIdentifier: "cell")
         List.delegate = self
         List.dataSource = self
@@ -28,7 +29,6 @@ class RemindersViewController: UIViewController, UITableViewDelegate {
         view.addSubview(addbutton)
         self.title = "Reminders"
         addbutton.addTarget(self, action: #selector(addAction), for: .touchUpInside)
-
         addbuttonLayout()
 
         var n = "0"
@@ -44,6 +44,11 @@ class RemindersViewController: UIViewController, UITableViewDelegate {
         List.reloadData()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.List.estimatedRowHeight = 100
+        self.List.rowHeight = UITableView.automaticDimension
+    }
+
     @objc func addAction() {
         data.append("")
         List.reloadData()
@@ -55,13 +60,15 @@ class RemindersViewController: UIViewController, UITableViewDelegate {
         addbutton.setTitleColor(.systemBlue, for: .normal)
         addbutton.setImage(.add, for: .normal)
         addbutton.snp.makeConstraints() {
-            $0.leading.equalTo(addView.snp.leading).offset(0)
-            $0.bottom.equalTo(addView.snp.bottom).offset(-20)
+            $0.leading.equalTo(addView.snp.leading).offset(20)
+            $0.top.equalTo(addView.snp.top).offset(20)
         }
         addView.backgroundColor = .white
         addView.snp.makeConstraints() {
-            $0.bottom.equalToSuperview().offset(-20)
-            $0.leading.equalToSuperview().offset(20)
+            $0.bottom.equalToSuperview().offset(0)
+            $0.height.equalTo(70)
+            $0.leading.equalToSuperview().offset(0)
+            $0.trailing.equalToSuperview().offset(0)
         }
     }
 }
@@ -73,8 +80,8 @@ extension RemindersViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! ReminderCell
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ReminderCell
+
         cell.textInputedHandler = { text in
             if text != nil {
                 self.data[indexPath.row] = text!
@@ -84,7 +91,6 @@ extension RemindersViewController: UITableViewDataSource {
             }
         }
         cell.tf.text = data[indexPath.row]
-        cell.tfLayout()
         return cell
     }
 
