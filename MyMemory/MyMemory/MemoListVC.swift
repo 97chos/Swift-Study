@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MemoListVCTableViewController: UITableViewController {
+class MemoListVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
