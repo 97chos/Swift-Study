@@ -24,11 +24,11 @@ class ReminderCell: UITableViewCell {
     var textInputedHandler: ((String?) -> Void)? = nil
 
     func tfLayout() {
-        contentView.addSubview(tf) //???
+        contentView.addSubview(tf)
         tf.delegate = self
         tf.backgroundColor = .black
         tf.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        tf.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        tf.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         tf.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         tf.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
     }

@@ -13,7 +13,7 @@ class RemindersViewController: UIViewController, UITableViewDelegate {
 
     var List = UITableView()
     var addView = UIView()
-    var addbutton = UIButton()
+    var addbutton = UIButton(type: .contactAdd)
     var data = [String]()
     
 
@@ -58,7 +58,6 @@ class RemindersViewController: UIViewController, UITableViewDelegate {
     func addbuttonLayout() {
         addbutton.setTitle(" New Reminder", for: .normal)
         addbutton.setTitleColor(.systemBlue, for: .normal)
-        addbutton.setImage(.add, for: .normal)
         addbutton.snp.makeConstraints() {
             $0.leading.equalTo(addView.snp.leading).offset(20)
             $0.top.equalTo(addView.snp.top).offset(20)
