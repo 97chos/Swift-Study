@@ -30,7 +30,7 @@ class MemoFormVC: UIViewController {
             return
         }
 
-        let data = Memodata()
+        let data = MemoData()
         
         data.title = self.subject
         data.contents = self.contents.text

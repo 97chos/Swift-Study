@@ -22,7 +22,7 @@
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="memoCell" rowHeight="80" id="b9B-Wg-35H">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="memoCell" rowHeight="80" id="b9B-Wg-35H" customClass="MemoCell" customModule="MyMemory" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="428" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="b9B-Wg-35H" id="fQF-B8-f2L">
@@ -78,6 +78,11 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="IIJ-lO-EUH" secondAttribute="trailing" id="mmD-TJ-H2L"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="contents" destination="hxf-PC-dXB" id="1Rf-SV-KrK"/>
+                                    <outlet property="regdate" destination="IIJ-lO-EUH" id="jYL-Qb-Ur9"/>
+                                    <outlet property="subejct" destination="l1Y-1h-R2p" id="bmm-JF-ApT"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="memoCellWithImage" rowHeight="80" id="hLl-UI-d3k" customClass="MemoCell" customModule="MyMemory" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="108" width="428" height="80"/>
@@ -87,7 +92,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="글 내용" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ejb-gv-M9P">
-                                            <rect key="frame" x="72.333333333333329" y="37" width="246.33333333333337" height="30"/>
+                                            <rect key="frame" x="64.999999999999986" y="37" width="253.66666666666663" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="8jg-a3-7Lr"/>
                                             </constraints>
@@ -107,13 +112,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cRh-La-XPM">
-                                            <rect key="frame" x="20.000000000000004" y="11" width="42.333333333333343" height="58"/>
+                                            <rect key="frame" x="20" y="11" width="35" height="58"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" secondItem="cRh-La-XPM" secondAttribute="height" multiplier="8:11" id="UuW-Vg-wAu"/>
+                                                <constraint firstAttribute="width" secondItem="cRh-La-XPM" secondAttribute="height" multiplier="35:58" id="lzC-qr-dwb"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="글 제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjp-B9-0bK">
-                                            <rect key="frame" x="72.333333333333329" y="11" width="246.33333333333337" height="21"/>
+                                            <rect key="frame" x="64.999999999999986" y="11" width="253.66666666666663" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="Nbw-a6-ISW"/>
                                             </constraints>
@@ -124,19 +129,26 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailingMargin" secondItem="puM-9D-JHv" secondAttribute="trailing" id="7d7-h3-BCD"/>
-                                        <constraint firstItem="cRh-La-XPM" firstAttribute="leading" secondItem="5im-FB-2bO" secondAttribute="leadingMargin" id="JbL-Be-EK1"/>
                                         <constraint firstItem="ejb-gv-M9P" firstAttribute="leading" secondItem="cRh-La-XPM" secondAttribute="trailing" constant="10" id="Pto-T4-ARf"/>
                                         <constraint firstItem="xjp-B9-0bK" firstAttribute="top" secondItem="5im-FB-2bO" secondAttribute="topMargin" id="SOQ-ak-YK2"/>
                                         <constraint firstItem="puM-9D-JHv" firstAttribute="top" secondItem="5im-FB-2bO" secondAttribute="topMargin" constant="10" id="Sf8-Ge-OXq"/>
+                                        <constraint firstItem="cRh-La-XPM" firstAttribute="leading" secondItem="5im-FB-2bO" secondAttribute="leadingMargin" id="Xdm-pc-eGk"/>
                                         <constraint firstItem="xjp-B9-0bK" firstAttribute="leading" secondItem="cRh-La-XPM" secondAttribute="trailing" constant="10" id="YQ0-gh-Wwe"/>
-                                        <constraint firstItem="cRh-La-XPM" firstAttribute="top" secondItem="5im-FB-2bO" secondAttribute="topMargin" id="bbo-Im-6oy"/>
+                                        <constraint firstItem="cRh-La-XPM" firstAttribute="bottom" secondItem="5im-FB-2bO" secondAttribute="bottomMargin" id="bNY-hQ-gzm"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="xjp-B9-0bK" secondAttribute="trailing" constant="70" id="eqx-dg-awa"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="ejb-gv-M9P" secondAttribute="trailing" constant="70" id="inS-2B-muQ"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="cRh-La-XPM" secondAttribute="bottom" id="mKi-Nr-WVQ"/>
+                                        <constraint firstItem="cRh-La-XPM" firstAttribute="top" secondItem="5im-FB-2bO" secondAttribute="topMargin" id="mkv-QV-VZi"/>
                                         <constraint firstItem="ejb-gv-M9P" firstAttribute="top" secondItem="xjp-B9-0bK" secondAttribute="bottom" constant="5" id="xCy-Ij-hLD"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="puM-9D-JHv" secondAttribute="bottom" constant="10" id="zdA-rk-zcM"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="contents" destination="ejb-gv-M9P" id="Ueh-a6-47e"/>
+                                    <outlet property="img" destination="cRh-La-XPM" id="bqV-wR-o1B"/>
+                                    <outlet property="regdate" destination="puM-9D-JHv" id="uVf-6Q-pr4"/>
+                                    <outlet property="subejct" destination="xjp-B9-0bK" id="HSo-u8-AUK"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -204,7 +216,7 @@
                             </barButtonItem>
                             <barButtonItem title="저장" id="lvt-kb-o1I">
                                 <connections>
-                                    <action selector="saver:" destination="mWa-c8-zlc" id="oDF-oE-OSP"/>
+                                    <action selector="save:" destination="mWa-c8-zlc" id="dNq-n0-M3E"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -221,7 +233,7 @@
         <!--메모-->
         <scene sceneID="WdJ-OB-8lH">
             <objects>
-                <viewController id="BcV-tV-r6q" customClass="MemoReadVC" customModule="MyMemory" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemoRead" id="BcV-tV-r6q" customClass="MemoReadVC" customModule="MyMemory" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RyA-vc-K7r">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -267,6 +279,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="메모" id="1re-ll-29s"/>
+                    <connections>
+                        <outlet property="contents" destination="hbu-uu-WYw" id="M6t-Jx-nBn"/>
+                        <outlet property="img" destination="XRR-23-D4y" id="wcF-mb-g3I"/>
+                        <outlet property="subject" destination="4eG-Km-flV" id="ALo-f2-0e8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HU9-wf-V6y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
