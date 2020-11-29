@@ -19,7 +19,6 @@ class RemindersViewController: UIViewController, UITableViewDelegate {
 
     override func viewDidLoad() {
         List = UITableView(frame: self.view.bounds, style: UITableView.Style.plain)
-        List.backgroundColor = .systemTeal
         List.register(ReminderCell.self, forCellReuseIdentifier: "cell")
         List.delegate = self
         List.dataSource = self
@@ -42,11 +41,6 @@ class RemindersViewController: UIViewController, UITableViewDelegate {
             n = String(Int(n)! + 1)
         }
         List.reloadData()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        self.List.estimatedRowHeight = 100
-        self.List.rowHeight = UITableView.automaticDimension
     }
 
     @objc func addAction() {
@@ -89,6 +83,7 @@ extension RemindersViewController: UITableViewDataSource {
                 return
             }
         }
+        
         cell.tf.text = data[indexPath.row]
         return cell
     }

@@ -26,11 +26,12 @@ class ReminderCell: UITableViewCell {
     func tfLayout() {
         contentView.addSubview(tf)
         tf.delegate = self
-        tf.backgroundColor = .black
-        tf.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        tf.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
-        tf.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        tf.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        tf.snp.makeConstraints() {
+            $0.top.equalTo(self.snp.top)
+            $0.bottom.equalTo(self.snp.bottom)
+            $0.leading.equalTo(self.snp.leading).offset(20)
+            $0.trailing.equalTo(self.snp.trailing).offset(-20)
+        }
     }
 }
 
