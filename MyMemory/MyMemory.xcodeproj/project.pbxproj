@@ -18,6 +18,11 @@
 		FF3822ED256E327A00834B35 /* MemoReadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3822EC256E327A00834B35 /* MemoReadVC.swift */; };
 		FF3822F1256E332800834B35 /* MemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3822F0256E332800834B35 /* MemoCell.swift */; };
 		FF3822F4256E338D00834B35 /* MemoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3822F3256E338D00834B35 /* MemoData.swift */; };
+		FF65A5292574D2FF0034CB8C /* CSLogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF65A5282574D2FF0034CB8C /* CSLogButton.swift */; };
+		FF65A5302574D59E0034CB8C /* memo-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF65A52C2574D59E0034CB8C /* memo-background@2x.png */; };
+		FF65A5312574D59E0034CB8C /* fountainpen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF65A52D2574D59E0034CB8C /* fountainpen@2x.png */; };
+		FF65A5322574D59E0034CB8C /* button-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FF65A52E2574D59E0034CB8C /* button-bg.png */; };
+		FF65A5332574D59E0034CB8C /* warning-icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF65A52F2574D59E0034CB8C /* warning-icon-60@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +39,11 @@
 		FF3822EC256E327A00834B35 /* MemoReadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoReadVC.swift; sourceTree = "<group>"; };
 		FF3822F0256E332800834B35 /* MemoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoCell.swift; sourceTree = "<group>"; };
 		FF3822F3256E338D00834B35 /* MemoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoData.swift; sourceTree = "<group>"; };
+		FF65A5282574D2FF0034CB8C /* CSLogButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLogButton.swift; sourceTree = "<group>"; };
+		FF65A52C2574D59E0034CB8C /* memo-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "memo-background@2x.png"; sourceTree = "<group>"; };
+		FF65A52D2574D59E0034CB8C /* fountainpen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fountainpen@2x.png"; sourceTree = "<group>"; };
+		FF65A52E2574D59E0034CB8C /* button-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-bg.png"; sourceTree = "<group>"; };
+		FF65A52F2574D59E0034CB8C /* warning-icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warning-icon-60@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +60,7 @@
 		FF3822C0256E100600834B35 = {
 			isa = PBXGroup;
 			children = (
+				FF65A52B2574D5700034CB8C /* Resources */,
 				FF3822CB256E100600834B35 /* MyMemory */,
 				FF3822CA256E100600834B35 /* Products */,
 			);
@@ -72,6 +83,7 @@
 				FF3822F3256E338D00834B35 /* MemoData.swift */,
 				FF3822F0256E332800834B35 /* MemoCell.swift */,
 				FF3822E9256E325A00834B35 /* MemoFormVC.swift */,
+				FF65A5282574D2FF0034CB8C /* CSLogButton.swift */,
 				FF3822EC256E327A00834B35 /* MemoReadVC.swift */,
 				FF3822E6256E321900834B35 /* MemoListVC.swift */,
 				FF3822D8256E100A00834B35 /* Assets.xcassets */,
@@ -80,6 +92,17 @@
 				FF3822D5256E100600834B35 /* MyMemory.xcdatamodeld */,
 			);
 			path = MyMemory;
+			sourceTree = "<group>";
+		};
+		FF65A52B2574D5700034CB8C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FF65A52E2574D59E0034CB8C /* button-bg.png */,
+				FF65A52D2574D59E0034CB8C /* fountainpen@2x.png */,
+				FF65A52C2574D59E0034CB8C /* memo-background@2x.png */,
+				FF65A52F2574D59E0034CB8C /* warning-icon-60@2x.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,7 +164,11 @@
 			files = (
 				FF3822DC256E100A00834B35 /* LaunchScreen.storyboard in Resources */,
 				FF3822D9256E100A00834B35 /* Assets.xcassets in Resources */,
+				FF65A5302574D59E0034CB8C /* memo-background@2x.png in Resources */,
+				FF65A5312574D59E0034CB8C /* fountainpen@2x.png in Resources */,
+				FF65A5322574D59E0034CB8C /* button-bg.png in Resources */,
 				FF3822D4256E100600834B35 /* Main.storyboard in Resources */,
+				FF65A5332574D59E0034CB8C /* warning-icon-60@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +179,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF65A5292574D2FF0034CB8C /* CSLogButton.swift in Sources */,
 				FF3822F1256E332800834B35 /* MemoCell.swift in Sources */,
 				FF3822F4256E338D00834B35 /* MemoData.swift in Sources */,
 				FF3822E7256E321900834B35 /* MemoListVC.swift in Sources */,
