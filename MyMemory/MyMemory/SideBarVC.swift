@@ -85,4 +85,17 @@ class SideBarVC: UITableViewController {
 
         return cell
     }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        // 선택된 행이 새 글 작성 메뉴일 때
+        if indexPath.row == 0 {
+            let uv = self.storyboard?.instantiateViewController(withIdentifier: "Memoform")
+            // revealViewController() 메소드는 메인 컨트롤러 객체(RevealViewController)를 가져오는 메소드, 이를 통해 frontViewController(메모 목록) 컨트롤러를 간접적으로 참조, 이를 네비게이션 컨트롤러로 캐스팅하여 pushViewController 메소드 호출
+            let target = self.revealViewController()?.frontViewController as! UINavigationController
+            target.pushViewController(uv!, animated: true)
+            // 사이드바를 닫아주는 메소드
+            self.revealViewController()?.revealToggle(self)
+        }
+    }
 }
