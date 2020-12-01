@@ -96,6 +96,12 @@ class SideBarVC: UITableViewController {
             target.pushViewController(uv!, animated: true)
             // 사이드바를 닫아주는 메소드
             self.revealViewController()?.revealToggle(self)
+        } else if indexPath.row == 5 {  // 계정관리
+            let uv = self.storyboard?.instantiateViewController(withIdentifier: "_profile")
+            uv?.modalPresentationStyle = .fullScreen
+            self.present(uv!, animated: true) {
+                self.revealViewController()?.revealToggle(self)
+            }
         }
     }
 }
