@@ -314,4 +314,5 @@ class inputNumViewController: UIViewController {
         self.dismiss(animated: true)
 
     }
+
 }
