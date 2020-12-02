@@ -79,6 +79,7 @@ extension RemindersViewController: UITableViewDataSource {
             if text != nil {
                 self.data[indexPath.row] = text!
                 UserDefaults.standard.set(self.data[indexPath.row], forKey: String(indexPath.row))
+                UserDefaults.standard.synchronize()
             } else {
                 return
             }
@@ -93,6 +94,8 @@ extension RemindersViewController: UITableViewDataSource {
             self.data.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             UserDefaults.standard.removeObject(forKey: String(indexPath.row))
+            UserDefaults.standard.synchronize()
+
         }
     }
 }
