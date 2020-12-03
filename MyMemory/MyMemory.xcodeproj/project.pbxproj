@@ -35,6 +35,7 @@
 		FF65A5CF257634EC0034CB8C /* SideBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF65A5CE257634EC0034CB8C /* SideBarVC.swift */; };
 		FF65A5D2257687E50034CB8C /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF65A5D1257687E50034CB8C /* ProfileVC.swift */; };
 		FF65A5D5257699AA0034CB8C /* profile-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FF65A5D4257699AA0034CB8C /* profile-bg.png */; };
+		FFDDC0D72578D3E200162835 /* UserInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDDC0D62578D3E200162835 /* UserInfoManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		FF65A5CE257634EC0034CB8C /* SideBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarVC.swift; sourceTree = "<group>"; };
 		FF65A5D1257687E50034CB8C /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		FF65A5D4257699AA0034CB8C /* profile-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile-bg.png"; sourceTree = "<group>"; };
+		FFDDC0D62578D3E200162835 /* UserInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				FF3822E6256E321900834B35 /* MemoListVC.swift */,
 				FF65A5CE257634EC0034CB8C /* SideBarVC.swift */,
 				FF65A5D1257687E50034CB8C /* ProfileVC.swift */,
+				FFDDC0D62578D3E200162835 /* UserInfoManager.swift */,
 				FF3822D8256E100A00834B35 /* Assets.xcassets */,
 				FF3822DA256E100A00834B35 /* LaunchScreen.storyboard */,
 				FF3822DD256E100A00834B35 /* Info.plist */,
@@ -240,6 +243,7 @@
 				FF3822D7256E100600834B35 /* MyMemory.xcdatamodeld in Sources */,
 				FF65A5B925762F320034CB8C /* SWRevealViewController.m in Sources */,
 				FF3822CD256E100600834B35 /* AppDelegate.swift in Sources */,
+				FFDDC0D72578D3E200162835 /* UserInfoManager.swift in Sources */,
 				FF3822CF256E100600834B35 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
