@@ -59,6 +59,12 @@ class ProfileVC: UIViewController {
 
         self.view.addSubview(tv)
         drawBtn()
+
+        // 탭 제스처 추가
+        let tap = UITapGestureRecognizer(target: self, action: #selector(profile(_:)))
+        self.profileImage.addGestureRecognizer(tap)
+        // 해당 객체가 사용자와 상호작용 할 수 있도록 속성 설정
+        self.profileImage.isUserInteractionEnabled = true
     }
 
     //MARK: - 창 닫기 메소드
@@ -87,7 +93,7 @@ class ProfileVC: UIViewController {
 
             if self.uInfo.login(account: account, passwd: passwd) {
                 self.tv.reloadData()                                    // 테이블 뷰 갱신
-                self.profileImage.image = self.uInfo.profile           // 추가 이미지 프로필 갱신
+                self.profileImage.image = self.uInfo.profile            // 추가 이미지 프로필 갱신
                 self.drawBtn()
             } else {
                 let msg = "로그인에 실패하였습니다."
@@ -98,6 +104,7 @@ class ProfileVC: UIViewController {
         })
         self.present(loginAlert, animated: true)
     }
+    
     //MARK: - 로그아웃 메소드
     @objc func doLogout(_ sender: Any) {
         let msg = "로그아웃하시겠습니까?"
@@ -116,10 +123,6 @@ class ProfileVC: UIViewController {
 }
 
 extension ProfileVC: UITableViewDelegate {
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
-    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
@@ -178,5 +181,69 @@ extension ProfileVC: UITableViewDelegate {
 }
 
 extension ProfileVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+}
+
+extension ProfileVC: UIImagePickerControllerDelegate {
+
+    // 이미지 피커 컨트롤러 띄우는 메소드
+    func imgPicker(_ source: UIImagePickerController.SourceType) {
+        let picker = UIImagePickerController()
+        picker.sourceType = source
+        picker.delegate = self
+        picker.allowsEditing = true
+        self.present(picker, animated: true)
+    }
+
+    // 프로필 사진의 소스 타입을 선택하는 액션 메소드
+    @objc func profile(_ sender : UIButton) {
+        // 로그인되어 있지 않을 경우에는 프로필 이미지 등록을 막고 대신 로그인 창을 띄워준다.
+        guard self.uInfo.account != nil else {
+            self.doLogin(self)
+            return
+        }
+
+        let alert = UIAlertController(title: nil,
+                                      message: "사진을 가져올 곳을 선택하세요",
+                                      preferredStyle: .actionSheet)
+
+        // 카메라를 사용할 수 있으면
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            alert.addAction(UIAlertAction(title: "카메라", style: .default) {_ in
+                self.imgPicker(.camera)
+            })
+        }
+        // 저장된 앨범을 사용할 수 있으면
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
+            alert.addAction(UIAlertAction(title: "앨범", style: .default){ _ in
+                self.imgPicker(.savedPhotosAlbum)
+            })
+        }
+        // 포토 라이브러리를 사용할 수 있으면
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            alert.addAction(UIAlertAction(title: "포토 라이브러리", style: .default){ _ in
+                self.imgPicker(.photoLibrary)
+            })
+        }
+        // 취소 버튼 추가
+        alert.addAction(UIAlertAction(title: "취소", style: .default))
+
+        // 액션 시트 실행
+        self.present(alert, animated: true)
+    }
+
+    // 이미지 선택 시 자동으로 호출되는 델리게이트 메소드
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let img = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            self.uInfo.profile = img
+            self.profileImage.image = img
+        }
+        picker.dismiss(animated: true)
+    }
+}
+
+extension ProfileVC: UINavigationControllerDelegate {
 
 }
