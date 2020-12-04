@@ -200,7 +200,7 @@ extension ProfileVC: UIImagePickerControllerDelegate {
     // 프로필 사진의 소스 타입을 선택하는 액션 메소드
     @objc func profile(_ sender : UIButton) {
         // 로그인되어 있지 않을 경우에는 프로필 이미지 등록을 막고 대신 로그인 창을 띄워준다.
-        guard self.uInfo.account != nil else {
+        guard self.uInfo.isLogin == true else {
             self.doLogin(self)
             return
         }

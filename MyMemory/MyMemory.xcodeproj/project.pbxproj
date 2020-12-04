@@ -36,6 +36,10 @@
 		FF65A5D2257687E50034CB8C /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF65A5D1257687E50034CB8C /* ProfileVC.swift */; };
 		FF65A5D5257699AA0034CB8C /* profile-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FF65A5D4257699AA0034CB8C /* profile-bg.png */; };
 		FFDDC0D72578D3E200162835 /* UserInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDDC0D62578D3E200162835 /* UserInfoManager.swift */; };
+		FFDDC0DA2579495200162835 /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFDDC0D92579495200162835 /* Tutorial.storyboard */; };
+		FFDDC0DD25794BED00162835 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDDC0DC25794BED00162835 /* Utils.swift */; };
+		FFDDC0E025794D5800162835 /* TutorialContentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDDC0DF25794D5800162835 /* TutorialContentsVC.swift */; };
+		FFDDC0E52579FC5000162835 /* TutorialMasterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDDC0E42579FC5000162835 /* TutorialMasterVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +76,10 @@
 		FF65A5D1257687E50034CB8C /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		FF65A5D4257699AA0034CB8C /* profile-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile-bg.png"; sourceTree = "<group>"; };
 		FFDDC0D62578D3E200162835 /* UserInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoManager.swift; sourceTree = "<group>"; };
+		FFDDC0D92579495200162835 /* Tutorial.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tutorial.storyboard; sourceTree = "<group>"; };
+		FFDDC0DC25794BED00162835 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		FFDDC0DF25794D5800162835 /* TutorialContentsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialContentsVC.swift; sourceTree = "<group>"; };
+		FFDDC0E42579FC5000162835 /* TutorialMasterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialMasterVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +130,7 @@
 				FF3822D8256E100A00834B35 /* Assets.xcassets */,
 				FF3822DA256E100A00834B35 /* LaunchScreen.storyboard */,
 				FF3822DD256E100A00834B35 /* Info.plist */,
+				FFDDC0E225794D8B00162835 /* Tutorial */,
 				FF3822D5256E100600834B35 /* MyMemory.xcdatamodeld */,
 				FF65A5B525762F300034CB8C /* MyMemory-Bridging-Header.h */,
 			);
@@ -146,6 +155,17 @@
 				FF65A52F2574D59E0034CB8C /* warning-icon-60@2x.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		FFDDC0E225794D8B00162835 /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				FFDDC0DC25794BED00162835 /* Utils.swift */,
+				FFDDC0D92579495200162835 /* Tutorial.storyboard */,
+				FFDDC0DF25794D5800162835 /* TutorialContentsVC.swift */,
+				FFDDC0E42579FC5000162835 /* TutorialMasterVC.swift */,
+			);
+			path = Tutorial;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,6 +237,7 @@
 				FF65A5D5257699AA0034CB8C /* profile-bg.png in Resources */,
 				FF65A5322574D59E0034CB8C /* button-bg.png in Resources */,
 				FF3822D4256E100600834B35 /* Main.storyboard in Resources */,
+				FFDDC0DA2579495200162835 /* Tutorial.storyboard in Resources */,
 				FF65A5C525762F760034CB8C /* icon03.png in Resources */,
 				FF65A5332574D59E0034CB8C /* warning-icon-60@2x.png in Resources */,
 				FF65A5CC25762F880034CB8C /* account@2x.jpg in Resources */,
@@ -235,15 +256,18 @@
 				FF65A5D2257687E50034CB8C /* ProfileVC.swift in Sources */,
 				FF65A5292574D2FF0034CB8C /* CSLogButton.swift in Sources */,
 				FF65A5CF257634EC0034CB8C /* SideBarVC.swift in Sources */,
+				FFDDC0DD25794BED00162835 /* Utils.swift in Sources */,
 				FF3822F1256E332800834B35 /* MemoCell.swift in Sources */,
 				FF3822F4256E338D00834B35 /* MemoData.swift in Sources */,
 				FF3822E7256E321900834B35 /* MemoListVC.swift in Sources */,
 				FF3822EA256E325A00834B35 /* MemoFormVC.swift in Sources */,
 				FF3822ED256E327A00834B35 /* MemoReadVC.swift in Sources */,
 				FF3822D7256E100600834B35 /* MyMemory.xcdatamodeld in Sources */,
+				FFDDC0E52579FC5000162835 /* TutorialMasterVC.swift in Sources */,
 				FF65A5B925762F320034CB8C /* SWRevealViewController.m in Sources */,
 				FF3822CD256E100600834B35 /* AppDelegate.swift in Sources */,
 				FFDDC0D72578D3E200162835 /* UserInfoManager.swift in Sources */,
+				FFDDC0E025794D5800162835 /* TutorialContentsVC.swift in Sources */,
 				FF3822CF256E100600834B35 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

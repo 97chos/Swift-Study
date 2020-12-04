@@ -27,6 +27,9 @@ class SideBarVC: UITableViewController {
     let emailLabel = UILabel()
     let profileImage = UIImageView()
 
+    // 개인 정보 관리 매니저
+    let uInfo = UserInfoManager()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,22 +40,17 @@ class SideBarVC: UITableViewController {
 
         // 이름 레이블 속성 설정
         self.nameLabel.frame = CGRect(x: 70, y: 15, width: 100, height: 30)
-        self.nameLabel.text = "조상호"
         self.nameLabel.textColor = .white
         self.nameLabel.font = .boldSystemFont(ofSize: 15)
         self.nameLabel.backgroundColor = .clear
 
         // 이메일 레이블 속성 설정
         self.emailLabel.frame = CGRect(x: 70, y: 40, width: 100, height: 30)
-        self.emailLabel.text = "97chos@naver.com"
         self.emailLabel.textColor = .white
         self.emailLabel.font = .systemFont(ofSize: 11)
-        self.emailLabel.sizeToFit()
         self.emailLabel.backgroundColor = .clear
 
         // 기본 프로필 이미지 구현
-        let defaultProfile = UIImage(named: "account.jpg")
-        self.profileImage.image = defaultProfile
         self.profileImage.frame = CGRect(x: 10, y: 10, width: 50, height: 50)
 
         // 프로필 이미지 둥글게 만들기
@@ -63,6 +61,13 @@ class SideBarVC: UITableViewController {
         headerView.addSubview(nameLabel)
         headerView.addSubview(emailLabel)
         headerView.addSubview(profileImage)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        self.nameLabel.text = self.uInfo.name ?? "Guest"
+        self.emailLabel.text = self.uInfo.account ?? ""
+        self.emailLabel.sizeToFit()
+        self.profileImage.image = self.uInfo.profile
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -89,14 +94,14 @@ class SideBarVC: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         // 선택된 행이 새 글 작성 메뉴일 때
-        if indexPath.row == 0 {
+        if titles[indexPath.row] == "새 글 작성하기" {
             let uv = self.storyboard?.instantiateViewController(withIdentifier: "Memoform")
             // revealViewController() 메소드는 메인 컨트롤러 객체(RevealViewController)를 가져오는 메소드, 이를 통해 frontViewController(메모 목록) 컨트롤러를 간접적으로 참조, 이를 네비게이션 컨트롤러로 캐스팅하여 pushViewController 메소드 호출
             let target = self.revealViewController()?.frontViewController as! UINavigationController
             target.pushViewController(uv!, animated: true)
             // 사이드바를 닫아주는 메소드
             self.revealViewController()?.revealToggle(self)
-        } else if indexPath.row == 5 {  // 계정관리
+        } else if titles[indexPath.row] == "계정 관리" {  // 계정관리
             let uv = self.storyboard?.instantiateViewController(withIdentifier: "_profile")
             uv?.modalPresentationStyle = .fullScreen
             self.present(uv!, animated: true) {
