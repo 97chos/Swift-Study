@@ -80,7 +80,6 @@ class SideBarVC: UITableViewController {
         // 재사용 큐에서 테이블 셀을 꺼내 온다. 없으면 새로 생성한다.
         let cell = tableView.dequeueReusableCell(withIdentifier: id) ?? UITableViewCell(style: .default,
                                                                                         reuseIdentifier: id)
-
         // 타이틀과 이미지를 대입한다.
         cell.textLabel?.text = titles[indexPath.row]
         cell.imageView?.image = icons[indexPath.row]

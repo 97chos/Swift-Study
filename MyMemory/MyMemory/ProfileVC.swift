@@ -141,7 +141,6 @@ extension ProfileVC: UITableViewDelegate {
         default:
             break
         }
-
         return cell
     }
 
@@ -151,6 +150,7 @@ extension ProfileVC: UITableViewDelegate {
             self.doLogin(self.tv)
         }
     }
+
     //MARK: - 로그인/로그아웃 버튼 메소드
     func drawBtn() {
         // 버튼을 감쌀 뷰 정의

@@ -34,6 +34,7 @@ class MemoListVC: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
 
+        // 이전에 튜토리얼 화면 확인 여부 체크
         let ud = UserDefaults.standard
         if ud.bool(forKey: UserInfoKey.tutorial) == false {
             let vc = self.instanceTutorialVC(name: "MasterVC")
@@ -83,7 +84,4 @@ class MemoListVC: UITableViewController {
         vc.param = row
         self.navigationController?.pushViewController(vc, animated: true)
     }
-
-
-
 }

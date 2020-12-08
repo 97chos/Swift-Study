@@ -31,8 +31,4 @@ class MemoReadVC: UIViewController {
         self.navigationItem.title = dateString
         
     }
-
-
-    
-
 }
