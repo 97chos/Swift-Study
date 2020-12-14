@@ -14,8 +14,14 @@ class MemoListVC: UITableViewController {
     // 앱 델리게이트 참조 정보 읽어오기
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
+    @IBOutlet weak var searchBar: UISearchBar!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        searchBar.delegate = self
+        // 검색바의 키보드에서 리턴 키가 항상 활성화되어 있도록 처리
+        searchBar.enablesReturnKeyAutomatically = false
 
         // SWRevealViewController 라이브러리의 revealViewController 객체를 읽어온다.
         if let revealVC = self.revealViewController() {
@@ -107,4 +113,27 @@ class MemoListVC: UITableViewController {
             self.tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
+}
+
+extension MemoListVC: UISearchBarDelegate {
+
+    // 검색바를 터치하면 호출되는 메소드
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+
+        // 검색바에 입력된 키워드 가져오기
+        let keyword = searchBar.text
+
+        // 키워드를 적용하여 데이터를 검색하고, 테이블뷰를 갱신
+        self.appDelegate.memoList = self.dao.fetch(Keyword: keyword)
+        self.tableView.reloadData()
+    }
+
+    // 텍스트 편집 시 호출되는 메소드
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let keyword = searchText
+
+        self.appDelegate.memoList = self.dao.fetch(Keyword: keyword)
+        self.tableView.reloadData()
+    }
+
 }
