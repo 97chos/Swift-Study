@@ -9,8 +9,11 @@ import UIKit
 
 class MemoListVC: UITableViewController {
 
+    lazy var dao = MemoDAO()
+
+    // 앱 델리게이트 참조 정보 읽어오기
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,6 +35,10 @@ class MemoListVC: UITableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+
+        // 코어 데이터에 저장된 데이터를 가져온다.
+        self.appDelegate.memoList = self.dao.fetch()
+        
         self.tableView.reloadData()
 
         // 이전에 튜토리얼 화면 확인 여부 체크

@@ -10,6 +10,7 @@ import UIKit
 class MemoFormVC: UIViewController {
 
     var subject: String!
+    lazy var dao = MemoDAO()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,8 +63,8 @@ class MemoFormVC: UIViewController {
         data.image = self.preview.image
         data.regdate = Date()
 
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.memoList.append(data)
+        // 코어 데이터에 메모 데이터 추가
+        self.dao.insert(data)
 
         self.navigationController?.popViewController(animated: true)
     }

@@ -35,6 +35,7 @@
 		FF65A5CF257634EC0034CB8C /* SideBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF65A5CE257634EC0034CB8C /* SideBarVC.swift */; };
 		FF65A5D2257687E50034CB8C /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF65A5D1257687E50034CB8C /* ProfileVC.swift */; };
 		FF65A5D5257699AA0034CB8C /* profile-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FF65A5D4257699AA0034CB8C /* profile-bg.png */; };
+		FF76BF8A2587058A00AEE5FC /* MemoDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF76BF892587058A00AEE5FC /* MemoDAO.swift */; };
 		FFDDC0D72578D3E200162835 /* UserInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDDC0D62578D3E200162835 /* UserInfoManager.swift */; };
 		FFDDC0DA2579495200162835 /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFDDC0D92579495200162835 /* Tutorial.storyboard */; };
 		FFDDC0DD25794BED00162835 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDDC0DC25794BED00162835 /* Utils.swift */; };
@@ -75,6 +76,7 @@
 		FF65A5CE257634EC0034CB8C /* SideBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarVC.swift; sourceTree = "<group>"; };
 		FF65A5D1257687E50034CB8C /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		FF65A5D4257699AA0034CB8C /* profile-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile-bg.png"; sourceTree = "<group>"; };
+		FF76BF892587058A00AEE5FC /* MemoDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoDAO.swift; sourceTree = "<group>"; };
 		FFDDC0D62578D3E200162835 /* UserInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoManager.swift; sourceTree = "<group>"; };
 		FFDDC0D92579495200162835 /* Tutorial.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tutorial.storyboard; sourceTree = "<group>"; };
 		FFDDC0DC25794BED00162835 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				FF3822CE256E100600834B35 /* SceneDelegate.swift */,
 				FF3822D2256E100600834B35 /* Main.storyboard */,
 				FF3822F3256E338D00834B35 /* MemoData.swift */,
+				FF76BF892587058A00AEE5FC /* MemoDAO.swift */,
 				FF3822F0256E332800834B35 /* MemoCell.swift */,
 				FF3822E9256E325A00834B35 /* MemoFormVC.swift */,
 				FF65A5282574D2FF0034CB8C /* CSLogButton.swift */,
@@ -129,9 +132,9 @@
 				FFDDC0D62578D3E200162835 /* UserInfoManager.swift */,
 				FF3822D8256E100A00834B35 /* Assets.xcassets */,
 				FF3822DA256E100A00834B35 /* LaunchScreen.storyboard */,
+				FF3822D5256E100600834B35 /* MyMemory.xcdatamodeld */,
 				FF3822DD256E100A00834B35 /* Info.plist */,
 				FFDDC0E225794D8B00162835 /* Tutorial */,
-				FF3822D5256E100600834B35 /* MyMemory.xcdatamodeld */,
 				FF65A5B525762F300034CB8C /* MyMemory-Bridging-Header.h */,
 			);
 			path = MyMemory;
@@ -264,6 +267,7 @@
 				FF3822ED256E327A00834B35 /* MemoReadVC.swift in Sources */,
 				FF3822D7256E100600834B35 /* MyMemory.xcdatamodeld in Sources */,
 				FFDDC0E52579FC5000162835 /* TutorialMasterVC.swift in Sources */,
+				FF76BF8A2587058A00AEE5FC /* MemoDAO.swift in Sources */,
 				FF65A5B925762F320034CB8C /* SWRevealViewController.m in Sources */,
 				FF3822CD256E100600834B35 /* AppDelegate.swift in Sources */,
 				FFDDC0D72578D3E200162835 /* UserInfoManager.swift in Sources */,
