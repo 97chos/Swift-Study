@@ -13,6 +13,10 @@ class ProfileVC: UIViewController {
     let profileImage = UIImageView()    // 프로필 사진 이미지
     let tv = UITableView()              // 프로필 목록
     let uInfo = UserInfoManager()       // 개인 정보 관리 매니저
+    var isCalling = false               // API 호출 상태값 관리 변수
+    
+    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +69,9 @@ class ProfileVC: UIViewController {
         self.profileImage.addGestureRecognizer(tap)
         // 해당 객체가 사용자와 상호작용 할 수 있도록 속성 설정
         self.profileImage.isUserInteractionEnabled = true
+
+        // 인디케이터 뷰 맨 위로 가져오기
+        self.view.bringSubviewToFront(self.indicatorView)
     }
 
     //MARK: - 창 닫기 메소드
@@ -74,6 +81,14 @@ class ProfileVC: UIViewController {
 
     //MARK: - 로그인 창 표시 메소드
     @objc func doLogin(_ sender: Any) {
+
+        if self.isCalling == true {
+            self.alert("응답을 기다리는 중입니다. \n 잠시만 기다려주세요.")
+            return
+        } else {
+            self.isCalling = true
+        }
+
         let loginAlert = UIAlertController(title: "LOGIN", message: nil, preferredStyle: .alert)
 
         // 알림창에 들어갈 입력폼 추가
@@ -86,21 +101,31 @@ class ProfileVC: UIViewController {
         }
 
         // 알림창 버튼 추가
-        loginAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        loginAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            self.isCalling = false
+        })
         loginAlert.addAction(UIAlertAction(title: "Login", style: .default){ _ in
+
+            // 인디케이터 실행
+            self.indicatorView.startAnimating()
+
             let account = loginAlert.textFields?[0].text ?? ""
             let passwd = loginAlert.textFields?[1].text ?? ""
 
-            if self.uInfo.login(account: account, passwd: passwd) {
-                self.tv.reloadData()                                    // 테이블 뷰 갱신
-                self.profileImage.image = self.uInfo.profile            // 추가 이미지 프로필 갱신
+            // 비동기 방식으로 적용되는 부분
+            self.uInfo.login(account: account, passwd: passwd, success: {
+                // 인디케이터 종료
+                self.indicatorView.stopAnimating()
+
+                self.tv.reloadData()                                // 테이블 뷰 갱신
+                self.profileImage.image = self.uInfo.profile        // 이미지 프로파일 갱신
                 self.drawBtn()
-            } else {
-                let msg = "로그인에 실패하였습니다."
-                let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style:.default))
-                self.present(alert, animated: true)
-            }
+            }, fail: { msg in
+                // 인디케이터 종료
+                self.indicatorView.stopAnimating()
+                self.alert(msg)
+            })
+            self.isCalling = false
         })
         self.present(loginAlert, animated: true)
     }
