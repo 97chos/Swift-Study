@@ -245,5 +245,8 @@ extension ProfileVC: UIImagePickerControllerDelegate {
 }
 
 extension ProfileVC: UINavigationControllerDelegate {
+    @IBAction func backProfile(_ segue: UIStoryboardSegue) {
+        
+    }
 
 }

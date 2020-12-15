@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CDB4C2CB18B8AB0E1CB8619A /* Pods_MyMemory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBEC4D0936D5E759200875BE /* Pods_MyMemory.framework */; };
 		FF3822CD256E100600834B35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3822CC256E100600834B35 /* AppDelegate.swift */; };
 		FF3822CF256E100600834B35 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3822CE256E100600834B35 /* SceneDelegate.swift */; };
 		FF3822D4256E100600834B35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF3822D2256E100600834B35 /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 		FF65A5D2257687E50034CB8C /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF65A5D1257687E50034CB8C /* ProfileVC.swift */; };
 		FF65A5D5257699AA0034CB8C /* profile-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FF65A5D4257699AA0034CB8C /* profile-bg.png */; };
 		FF76BF8A2587058A00AEE5FC /* MemoDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF76BF892587058A00AEE5FC /* MemoDAO.swift */; };
+		FF76C12B25887D7400AEE5FC /* JoinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF76C12A25887D7400AEE5FC /* JoinVC.swift */; };
 		FFDDC0D72578D3E200162835 /* UserInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDDC0D62578D3E200162835 /* UserInfoManager.swift */; };
 		FFDDC0DA2579495200162835 /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFDDC0D92579495200162835 /* Tutorial.storyboard */; };
 		FFDDC0DD25794BED00162835 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDDC0DC25794BED00162835 /* Utils.swift */; };
@@ -44,6 +46,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BBEC4D0936D5E759200875BE /* Pods_MyMemory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyMemory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8E6AA689189C9A2C25EF235 /* Pods-MyMemory.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMemory.release.xcconfig"; path = "Target Support Files/Pods-MyMemory/Pods-MyMemory.release.xcconfig"; sourceTree = "<group>"; };
+		EB2993F09E146CF79E72421E /* Pods-MyMemory.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMemory.debug.xcconfig"; path = "Target Support Files/Pods-MyMemory/Pods-MyMemory.debug.xcconfig"; sourceTree = "<group>"; };
 		FF3822C9256E100600834B35 /* MyMemory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMemory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF3822CC256E100600834B35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF3822CE256E100600834B35 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +82,7 @@
 		FF65A5D1257687E50034CB8C /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		FF65A5D4257699AA0034CB8C /* profile-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile-bg.png"; sourceTree = "<group>"; };
 		FF76BF892587058A00AEE5FC /* MemoDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoDAO.swift; sourceTree = "<group>"; };
+		FF76C12A25887D7400AEE5FC /* JoinVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinVC.swift; sourceTree = "<group>"; };
 		FFDDC0D62578D3E200162835 /* UserInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoManager.swift; sourceTree = "<group>"; };
 		FFDDC0D92579495200162835 /* Tutorial.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tutorial.storyboard; sourceTree = "<group>"; };
 		FFDDC0DC25794BED00162835 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -89,18 +95,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDB4C2CB18B8AB0E1CB8619A /* Pods_MyMemory.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		48BC146C2A2D0B91F959D41D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BBEC4D0936D5E759200875BE /* Pods_MyMemory.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C5685F79F555B95E67E214FC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EB2993F09E146CF79E72421E /* Pods-MyMemory.debug.xcconfig */,
+				E8E6AA689189C9A2C25EF235 /* Pods-MyMemory.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		FF3822C0256E100600834B35 = {
 			isa = PBXGroup;
 			children = (
 				FF65A52B2574D5700034CB8C /* Resources */,
 				FF3822CB256E100600834B35 /* MyMemory */,
 				FF3822CA256E100600834B35 /* Products */,
+				C5685F79F555B95E67E214FC /* Pods */,
+				48BC146C2A2D0B91F959D41D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,6 +146,7 @@
 				FF3822CC256E100600834B35 /* AppDelegate.swift */,
 				FF3822CE256E100600834B35 /* SceneDelegate.swift */,
 				FF3822D2256E100600834B35 /* Main.storyboard */,
+				FF76C12A25887D7400AEE5FC /* JoinVC.swift */,
 				FF3822F3256E338D00834B35 /* MemoData.swift */,
 				FF76BF892587058A00AEE5FC /* MemoDAO.swift */,
 				FF3822F0256E332800834B35 /* MemoCell.swift */,
@@ -178,9 +205,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FF3822E0256E100A00834B35 /* Build configuration list for PBXNativeTarget "MyMemory" */;
 			buildPhases = (
+				3DE563334CDB7D2D69EC34CD /* [CP] Check Pods Manifest.lock */,
 				FF3822C5256E100600834B35 /* Sources */,
 				FF3822C6256E100600834B35 /* Frameworks */,
 				FF3822C7256E100600834B35 /* Resources */,
+				5858D84B085A67100EFBD8BA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -251,6 +280,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3DE563334CDB7D2D69EC34CD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MyMemory-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5858D84B085A67100EFBD8BA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyMemory/Pods-MyMemory-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyMemory/Pods-MyMemory-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyMemory/Pods-MyMemory-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FF3822C5256E100600834B35 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -270,6 +341,7 @@
 				FF76BF8A2587058A00AEE5FC /* MemoDAO.swift in Sources */,
 				FF65A5B925762F320034CB8C /* SWRevealViewController.m in Sources */,
 				FF3822CD256E100600834B35 /* AppDelegate.swift in Sources */,
+				FF76C12B25887D7400AEE5FC /* JoinVC.swift in Sources */,
 				FFDDC0D72578D3E200162835 /* UserInfoManager.swift in Sources */,
 				FFDDC0E025794D5800162835 /* TutorialContentsVC.swift in Sources */,
 				FF3822CF256E100600834B35 /* SceneDelegate.swift in Sources */,
@@ -416,6 +488,7 @@
 		};
 		FF3822E1256E100A00834B35 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EB2993F09E146CF79E72421E /* Pods-MyMemory.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -437,6 +510,7 @@
 		};
 		FF3822E2256E100A00834B35 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E8E6AA689189C9A2C25EF235 /* Pods-MyMemory.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

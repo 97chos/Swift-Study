@@ -318,11 +318,71 @@
                         <viewLayoutGuide key="safeArea" id="L2P-8e-pA7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="BNE-Lj-RoU"/>
+                    <navigationItem key="navigationItem" id="BNE-Lj-RoU">
+                        <barButtonItem key="rightBarButtonItem" title="새 계정" id="Ane-zM-LeF">
+                            <connections>
+                                <segue destination="ApL-ey-6XK" kind="show" id="ngq-ON-OQY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZDL-ri-8kR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1028" y="884"/>
+        </scene>
+        <!--신규 계정 등록-->
+        <scene sceneID="PQW-Sc-Fm8">
+            <objects>
+                <viewController id="ApL-ey-6XK" customClass="JoinVC" customModule="MyMemory" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Q0c-XA-0GL">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Account" translatesAutoresizingMaskIntoConstraints="NO" id="3f2-fn-xoz">
+                                <rect key="frame" x="20" y="113" width="120" height="120"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dO1-Pu-REe">
+                                <rect key="frame" x="148" y="113" width="260" height="160"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="i1J-pu-f8x">
+                                        <rect key="frame" x="0.0" y="28" width="260" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="i1J-pu-f8x" id="m0Y-Rl-PzL">
+                                            <rect key="frame" x="0.0" y="0.0" width="260" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="kH5-tL-deV">
+                                <rect key="frame" x="204" y="453" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="uD8-cG-2Xz"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="신규 계정 등록" id="S6G-4A-wWU">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="y8L-xz-VFu">
+                            <connections>
+                                <action selector="submit:" destination="ApL-ey-6XK" id="EbA-rW-4u0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="indicatorView" destination="kH5-tL-deV" id="5sv-Jp-zQP"/>
+                        <outlet property="profile" destination="3f2-fn-xoz" id="Y1e-yv-Aat"/>
+                        <outlet property="tableView" destination="dO1-Pu-REe" id="upx-OF-JaS"/>
+                        <segue destination="BGx-ak-kNh" kind="unwind" identifier="backProfileVC" unwindAction="backProfile:" id="xyG-Po-6D7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zsh-2D-R5x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="BGx-ak-kNh" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1889.7196261682243" y="883.80129589632838"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="eCu-w0-FpO">
@@ -407,6 +467,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Account" width="90" height="90"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

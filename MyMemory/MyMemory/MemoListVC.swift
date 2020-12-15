@@ -134,6 +134,7 @@ extension MemoListVC: UISearchBarDelegate {
 
         self.appDelegate.memoList = self.dao.fetch(Keyword: keyword)
         self.tableView.reloadData()
+
     }
 
 }

@@ -19,6 +19,7 @@ struct UserInfoKey {
 
 // 계정 및 사용자 정보를 저장 관리하는 클래스
 class UserInfoManager {
+    
     // 연산 프로퍼티 loginId 정의
     var logInId: Int {
         get {
