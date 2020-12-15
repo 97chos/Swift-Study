@@ -70,7 +70,7 @@ class TokenUtils {
         NSLog("status=\(status)")
     }
 
-    // 키 테인에 저장된 액세스 토큰을 이용하여 헤더를 만들어주는 메소드
+    // 키 체인에 저장된 액세스 토큰을 이용하여 헤더를 만들어주는 메소드
     func getAutorizationHeader() -> HTTPHeaders? {
         let serviceID = "kr.co.rubypaper.MyMemory"
         if let accessToken = self.load(serviceID, account: "accessToken", value: "") {

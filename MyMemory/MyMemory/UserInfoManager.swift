@@ -141,13 +141,39 @@ class UserInfoManager {
     }
 
     // 로그아웃 처리 메소드
-    func logout() -> Bool {
+    func logout(complletion: (()->Void)? = nil) {
+
+        // 1. 호출 URL
+        let url = "http://swiftapi.rubypaper.co.kr:2029/userAccount/logout"
+
+        // 2. 인증 헤더 구현
+        let tokenUtils = TokenUtils()
+        let header = tokenUtils.getAutorizationHeader()
+
+        // 3. API 호출 및 응답 처리
+        let call = AF.request(url,method: .post, encoding: JSONEncoding.default, headers: header)
+        call.responseJSON { _ in
+            // 디바이스 로그아웃
+            self.deviceLogout()
+
+            // 전달 완료 받은 클로저 실행
+            complletion?()
+        }
+    }
+
+    // 디바이스 수준 로그아웃
+    func deviceLogout() {
+        // 기본 저장소에 저장된 값을 모두 삭제
         let ud = UserDefaults.standard
         ud.removeObject(forKey: UserInfoKey.loginId)
         ud.removeObject(forKey: UserInfoKey.account)
         ud.removeObject(forKey: UserInfoKey.name)
         ud.removeObject(forKey: UserInfoKey.profile)
         ud.synchronize()
-        return true
+
+        // 키 체인에 저장된 값 모두 삭제
+        let tokenUtils = TokenUtils()
+        tokenUtils.delete("kr.co.rubypaper.MyMemory", account: "refreshToken")
+        tokenUtils.delete("kr.co.rubypaper.MeMemory", account: "accessToken")
     }
 }

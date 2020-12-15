@@ -137,9 +137,15 @@ class ProfileVC: UIViewController {
 
         alert.addAction(UIAlertAction(title: "취소", style: .cancel))
         alert.addAction(UIAlertAction(title: "확인", style: .default) { _ in
-            if self.uInfo.logout() {
+            // 인디케이터 실행
+            self.indicatorView.startAnimating()
+
+            self.uInfo.logout() {
+                // 인디케이터 종료
+                self.indicatorView.stopAnimating()
+
                 self.tv.reloadData()
-                self.profileImage.image = self.uInfo.profile        // 이미지 프로필 갱신
+                self.profileImage.image = self.uInfo.profile
                 self.drawBtn()
             }
         })
