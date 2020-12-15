@@ -121,6 +121,16 @@ class UserInfoManager {
                     }
                 }
 
+                // 토큰 정보 추출
+                let accessToken = jsonObject["access_token"] as! String     // 액세스 토큰 추출
+                let refreshToken = jsonObject["refresh_token"] as! String   // 리프레쉬 토큰 추출
+
+                // 토큰 정보 저장
+                let tk = TokenUtils()
+                tk.save("kr.co.rubypaper.Mymemory", account: "accessToken", value: accessToken)
+                tk.save("kr.co.rubypaper.Mymemory", account: "refreshToken", value: refreshToken)
+                
+
                 // 3-5. 인자값으로 입력된 success 클로저 블록 실행
                 success?()
             } else {

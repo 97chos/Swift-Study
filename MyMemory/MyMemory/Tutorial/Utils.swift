@@ -10,7 +10,7 @@ import UIKit
 import Security
 import Alamofire
 
-class TokenUnits {
+class TokenUtils {
     // 키체인에 값을 저장하는 메소드
     func save(_ service: String, account: String, value: String) {
         let keyChainQuery: NSDictionary = [
@@ -52,6 +52,30 @@ class TokenUnits {
             return value
         } else {    // 4. 처리 결과가 실패라면 nil을 반환
             print("Nothing was retrieved from the keychain. Status code \(status)")
+            return nil
+        }
+    }
+
+    // 키 체인에 저장된 값을 삭제하는 메소드
+    func delete(_ service: String, account: String) {
+        let keyChainQuery: NSDictionary = [
+            kSecClass : kSecClassGenericPassword,
+            kSecAttrService : service,
+            kSecAttrAccount : account
+        ]
+
+        // 현재 저장되어 있는 값 삭제
+        let status = SecItemDelete(keyChainQuery)
+        assert(status == noErr, "토큰 값 삭제에 실패했습니다.")
+        NSLog("status=\(status)")
+    }
+
+    // 키 테인에 저장된 액세스 토큰을 이용하여 헤더를 만들어주는 메소드
+    func getAutorizationHeader() -> HTTPHeaders? {
+        let serviceID = "kr.co.rubypaper.MyMemory"
+        if let accessToken = self.load(serviceID, account: "accessToken", value: "") {
+            return ["Autorization" : "Bearer \(accessToken)"] as HTTPHeaders
+        } else {
             return nil
         }
     }
