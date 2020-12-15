@@ -267,7 +267,21 @@ extension ProfileVC: UIImagePickerControllerDelegate {
 
     // 이미지 선택 시 자동으로 호출되는 델리게이트 메소드
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // 인디케이터 실행
+        self.indicatorView.startAnimating()
+
         if let img = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+
+            self.uInfo.newProfile(img, success: {
+                // 인디케이터 종료
+                self.indicatorView.stopAnimating()
+                self.profileImage.image = img
+            }, fail: { msg in
+                // 인디케이터 종료
+                self.indicatorView.stopAnimating()
+                self.alert(msg)
+            })
+
             self.uInfo.profile = img
             self.profileImage.image = img
         }

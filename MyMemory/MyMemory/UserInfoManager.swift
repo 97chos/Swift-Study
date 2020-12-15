@@ -176,4 +176,39 @@ class UserInfoManager {
         tokenUtils.delete("kr.co.rubypaper.MyMemory", account: "refreshToken")
         tokenUtils.delete("kr.co.rubypaper.MeMemory", account: "accessToken")
     }
+
+    // 프로필 이미지 업데이트 메소드
+    func newProfile(_ profile: UIImage?, success: (()->Void)? = nil, fail: ((String)->Void)? = nil) {
+
+        // API 호출 URL
+        let url = "http://swiftapi.rubypaper.co.kr:2029/userAccount/profile"
+
+        // 인증 센터
+        let tk = TokenUtils()
+        let header = tk.getAutorizationHeader()
+
+        // 전송할 프로필 이미지
+        let profileData = profile!.pngData()?.base64EncodedString()
+        let param: Parameters = ["profile_image" : profileData!]
+
+        // 이미지 전송
+        let call = AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: header)
+        call.responseJSON() { res in
+
+            guard let jsonObject = try! res.result.get() as? NSDictionary else {
+                fail?("올바른 응답값이 아닙니다.")
+                return
+            }
+
+            // 응답 코드 확인
+            let resultCode = jsonObject["result_code"] as! Int
+            if resultCode == 0 {
+                self.profile = profile                  // 이미지 업로드 후 UserDefault 객체에 저장된 이미지도 변경
+                success?()
+            } else {
+                let msg = (jsonObject["error_msg"] as? String) ?? "이미지 프로필 변경에 실패했습니다."
+                fail?(msg)
+            }
+        }
+    }
 }
