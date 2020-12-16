@@ -31,7 +31,7 @@ class TokenUtils {
 
     // 키 체인에 저장된 값을 읽어오는 메소드
     func load(_ service: String, account: String, value: String) -> String? {
-        // 1. 키 테인 쿼리 정의
+        // 1. 키 체인 쿼리 정의
         let keyChainQuery: NSDictionary = [
             kSecClass : kSecClassGenericPassword,
             kSecAttrService : service,
@@ -66,7 +66,7 @@ class TokenUtils {
 
         // 현재 저장되어 있는 값 삭제
         let status = SecItemDelete(keyChainQuery)
-        assert(status == noErr, "토큰 값 삭제에 실패했습니다.")
+        // assert(status == noErr, "토큰 값 삭제에 실패했습니다.")
         NSLog("status=\(status)")
     }
 

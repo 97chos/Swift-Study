@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+import Alamofire
+import LocalAuthentication
 
 class ProfileVC: UIViewController {
 
@@ -20,6 +22,9 @@ class ProfileVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // 토큰 인증 여부 체크
+        self.tokenvalidate()
 
         self.navigationItem.title = "프로필"
 
@@ -294,4 +299,158 @@ extension ProfileVC: UINavigationControllerDelegate {
         
     }
 
+}
+
+extension ProfileVC {
+    // 토큰 인증 메소드
+    func tokenvalidate() {
+        // 0. 응답 캐시를 사용하지 않도록
+        URLCache.shared.removeAllCachedResponses()
+
+        // 1. 키 체인에 엑세스 토큰이 없을 경우 유효성 검증을 진행하지 않음
+        let tk = TokenUtils()
+        guard let header = tk.getAutorizationHeader() else {
+            return
+        }
+
+        // 로딩 인디케이터 시작
+        self.indicatorView.startAnimating()
+
+        // 2. 액세스 토큰 유효성 검사 API인 tokenValidate API 호출
+        let url = "http://swiftapi.rupypaper.co.kr:2029/userAccount/tokenValidate"
+        let validate = AF.request(url, method: .post, encoding: JSONEncoding.default, headers: header)
+
+        validate.responseJSON() { res in
+            self.indicatorView.stopAnimating()
+
+            let responseBody = try! res.result.get()
+            print(responseBody)
+            guard let jsonObject = responseBody as? NSDictionary else {
+                self.alert("잘못된 응답입니다.")
+                return
+            }
+
+            // 3. 응답 결과 처리
+            let resultCode = jsonObject["result_code"] as! Int
+
+            // 3-1. 응답 결과가 실패일 때, 즉 토큰이 만료되었을 때
+            if resultCode != 0 {
+                // 로컬 인증 실행
+                self.touchID()
+            }
+        }
+    }
+
+    // 터치 아이디 인증 메소드
+    func touchID() {
+
+        // 1. LAContext 인스턴스 생성
+        let context = LAContext()
+
+        // 2. 로컬 인증에 사용할 변수 정의
+        var error: NSError?
+        let msg = "인증이 필요합니다."
+        let deviceAuth = LAPolicy.deviceOwnerAuthenticationWithBiometrics   // 인증 정책
+
+        // 3. 로컬 인증이 사용 가능한지 여부 확인
+        if context.canEvaluatePolicy(deviceAuth, error: &error) {
+            // 4. 터치 아이디 인증창 실행
+            context.evaluatePolicy(deviceAuth, localizedReason: msg) { (success, e) in
+                if success {                    // 5. 인증 성공 : 토큰 갱신 로직
+                    self.refresh()
+                } else {                        // 6. 인증 실패
+                    print((e?.localizedDescription)!)
+
+                    switch (e!._code) {
+                    case LAError.systemCancel.rawValue:
+                        self.alert("시스템에 의해 인증이 취소되었습니다.")
+                    case LAError.userCancel.rawValue:
+                        self.alert("사용자에 의해 인증이 취소되었습니다.") {
+                            self.commonLogout(true)
+                        }
+                    case LAError.userFallback.rawValue:
+                        // 경고창과 인증창이 서로 충돌하는 것을 막기위해, 큐에 들어온 작업들이 순차적으로 처리되도록 해주는 메소드
+                        OperationQueue.main.addOperation {
+                            self.commonLogout(true)
+                        }
+                    default:
+                        OperationQueue.main.addOperation {
+                            self.commonLogout(true)
+                        }
+                    }
+                }
+            }
+        } else {                                // 7. 인증창이 실행되지 못한 경우
+            print(error!.localizedDescription)
+            switch (error?.code) {
+            case LAError.biometryNotEnrolled.rawValue:
+                print("터치 아이디를 등록해주세요.")
+            case LAError.passcodeNotSet.rawValue:
+                print("패스 코드를 설정해주세요.")
+            default:
+                print("터치 아이디를 사용할 수 없습니다.")
+            }
+            OperationQueue.main.addOperation {
+                self.commonLogout(true)
+            }
+        }
+    }
+
+    // 토큰 갱신 메소드
+    func refresh() {
+        self.indicatorView.startAnimating()     // 로딩 시작
+
+        // 1. 인증 헤더
+        let tk = TokenUtils()
+        let header = tk.getAutorizationHeader()
+
+        // 2. 리프레쉬 토큰 전달 준비
+        let refreshToken = tk.load("kr.co.rubypaer.MyMemory", account: "refreshToken", value: "")
+        let param: Parameters = ["refresh_token": refreshToken!]
+
+        // 3. 호출 및 응답
+        let url = "http://swiftapi.rupypaper.co.kr:2029/userAccount/refresh"
+        let refresh = AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: header)
+        refresh.responseJSON() { res in
+            self.indicatorView.stopAnimating()  // 로딩 중지
+            guard let jsonObject = try! res.result.get() as? NSDictionary else {
+                self.alert("잘못된 응답입니다.")
+                return
+            }
+
+            // 4. 응답 결과 처리
+            let resultCode = jsonObject["result_code"] as! Int
+
+            // 성공 : 엑세스 토큰이 갱신됨
+            if resultCode == 0 {
+                // 4-1. 키체인에 저장된 엑세스 토큰 교체
+                let accessToken = jsonObject["access_token"] as! String
+                tk.save("kr.co.rubypaper.MeMemory", account: "accessToken", value: accessToken)
+            } else {        // 실패 : 엑세스 토큰 없음
+                self.alert("인증이 만료되었습니다. 다시 로그인해야 합니다.") {
+                    OperationQueue.main.addOperation {
+                        self.commonLogout(true)
+                    }
+                }
+            }
+        }
+    }
+
+    // 토큰 갱신 과정에서 발생할 실패 상황에서 사용되는 로그아웃 메소드
+    func commonLogout(_ isLogin: Bool = false) {
+
+        // 1. 저장된 기존 개인 정보 & 키 체인 데이터를 삭제하여 로그아웃 상태로 전환
+        let userInfo = UserInfoManager()
+        userInfo.deviceLogout()
+
+        // 2. 프로필 화면 UI 갱신
+        self.tv.reloadData()    // 테이블 뷰 갱신
+        self.profileImage.image = userInfo.profile
+        self.drawBtn()
+
+        // 3. 기본 로그인 창 실행 여부
+        if isLogin {
+            self.doLogin(self)
+        }
+    }
 }
