@@ -61,6 +61,9 @@ class SideBarVC: UITableViewController {
         headerView.addSubview(nameLabel)
         headerView.addSubview(emailLabel)
         headerView.addSubview(profileImage)
+
+        self.tableView.tableFooterView = UIView()
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -69,7 +72,7 @@ class SideBarVC: UITableViewController {
         self.emailLabel.sizeToFit()
         self.profileImage.image = self.uInfo.profile
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return titles.count
     }

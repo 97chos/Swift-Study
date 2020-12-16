@@ -129,7 +129,6 @@ class UserInfoManager {
                 let tk = TokenUtils()
                 tk.save("kr.co.rubypaper.Mymemory", account: "accessToken", value: accessToken)
                 tk.save("kr.co.rubypaper.Mymemory", account: "refreshToken", value: refreshToken)
-                
 
                 // 3-5. 인자값으로 입력된 success 클로저 블록 실행
                 success?()

@@ -21,10 +21,6 @@ public class CSLogButton: UIButton {
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
 
-        // 버튼에 스타일 적용
-        self.setBackgroundImage(UIImage(named: "button-bg"), for: .normal)
-        self.tintColor = .white
-
         self.addTarget(self, action: #selector(logging(_:)), for: .touchUpInside)
     }
 
