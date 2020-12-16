@@ -19,6 +19,7 @@
 		FF3822ED256E327A00834B35 /* MemoReadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3822EC256E327A00834B35 /* MemoReadVC.swift */; };
 		FF3822F1256E332800834B35 /* MemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3822F0256E332800834B35 /* MemoCell.swift */; };
 		FF3822F4256E338D00834B35 /* MemoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3822F3256E338D00834B35 /* MemoData.swift */; };
+		FF59BD202589E5DB0047CC7A /* DataSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF59BD1F2589E5DB0047CC7A /* DataSync.swift */; };
 		FF65A5292574D2FF0034CB8C /* CSLogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF65A5282574D2FF0034CB8C /* CSLogButton.swift */; };
 		FF65A5302574D59E0034CB8C /* memo-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF65A52C2574D59E0034CB8C /* memo-background@2x.png */; };
 		FF65A5312574D59E0034CB8C /* fountainpen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF65A52D2574D59E0034CB8C /* fountainpen@2x.png */; };
@@ -62,6 +63,7 @@
 		FF3822EC256E327A00834B35 /* MemoReadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoReadVC.swift; sourceTree = "<group>"; };
 		FF3822F0256E332800834B35 /* MemoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoCell.swift; sourceTree = "<group>"; };
 		FF3822F3256E338D00834B35 /* MemoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoData.swift; sourceTree = "<group>"; };
+		FF59BD1F2589E5DB0047CC7A /* DataSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSync.swift; sourceTree = "<group>"; };
 		FF65A5282574D2FF0034CB8C /* CSLogButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLogButton.swift; sourceTree = "<group>"; };
 		FF65A52C2574D59E0034CB8C /* memo-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "memo-background@2x.png"; sourceTree = "<group>"; };
 		FF65A52D2574D59E0034CB8C /* fountainpen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fountainpen@2x.png"; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				FF3822D8256E100A00834B35 /* Assets.xcassets */,
 				FF3822DA256E100A00834B35 /* LaunchScreen.storyboard */,
 				FF3822D5256E100600834B35 /* MyMemory.xcdatamodeld */,
+				FF59BD1F2589E5DB0047CC7A /* DataSync.swift */,
 				FF3822DD256E100A00834B35 /* Info.plist */,
 				FFDDC0E225794D8B00162835 /* Tutorial */,
 				FF65A5B525762F300034CB8C /* MyMemory-Bridging-Header.h */,
@@ -328,6 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF65A5D2257687E50034CB8C /* ProfileVC.swift in Sources */,
+				FF59BD202589E5DB0047CC7A /* DataSync.swift in Sources */,
 				FF65A5292574D2FF0034CB8C /* CSLogButton.swift in Sources */,
 				FF65A5CF257634EC0034CB8C /* SideBarVC.swift in Sources */,
 				FFDDC0DD25794BED00162835 /* Utils.swift in Sources */,

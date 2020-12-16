@@ -4,9 +4,10 @@
         <attribute name="contents" optional="YES" attributeType="String"/>
         <attribute name="image" optional="YES" attributeType="Binary"/>
         <attribute name="regdate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="sync" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Memo" positionX="-27" positionY="18" width="128" height="89"/>
+        <element name="Memo" positionX="-27" positionY="18" width="128" height="104"/>
     </elements>
 </model>

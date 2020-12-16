@@ -125,6 +125,15 @@ class ProfileVC: UIViewController {
                 self.tv.reloadData()                                // 테이블 뷰 갱신
                 self.profileImage.image = self.uInfo.profile        // 이미지 프로파일 갱신
                 self.drawBtn()
+
+                // 서버와 데이터 동기화
+                let sync = DataSync()
+                DispatchQueue.global(qos: .background).async {      // 블록 내에 작성된 코드를 백그라운드에서 실행할 수 있게 해주는 글로벌 큐
+                    sync.downloadBackupData()
+                }
+                DispatchQueue.global(qos: .background).async {
+                    sync.uploadData()
+                }
             }, fail: { msg in
                 // 인디케이터 종료
                 self.indicatorView.stopAnimating()
