@@ -186,6 +186,7 @@ extension ProfileVC: UITableViewDelegate {
         cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
         cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 13)
         cell.accessoryType = .disclosureIndicator
+        cell.selectionStyle = .none
 
         switch indexPath.row {
         case 0 :
