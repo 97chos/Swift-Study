@@ -31,7 +31,6 @@ class MemoFormVC: UIViewController {
         self.contents.attributedText = NSAttributedString(string: "",
                                                           attributes: [.paragraphStyle: style])
         self.contents.text = ""
-
     }
 
     @IBOutlet weak var contents: UITextView!

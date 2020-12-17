@@ -19,7 +19,6 @@ class ProfileVC: UIViewController {
     
     @IBOutlet weak var indicatorView: UIActivityIndicatorView!
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -77,6 +76,15 @@ class ProfileVC: UIViewController {
 
         // 인디케이터 뷰 맨 위로 가져오기
         self.view.bringSubviewToFront(self.indicatorView)
+
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        if self.uInfo.isLogin {
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
+        } else {
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
+        }
     }
 
     //MARK: - 창 닫기 메소드
@@ -134,6 +142,7 @@ class ProfileVC: UIViewController {
                 DispatchQueue.global(qos: .background).async {
                     sync.uploadData()
                 }
+                self.navigationItem.rightBarButtonItem?.isEnabled = false
             }, fail: { msg in
                 // 인디케이터 종료
                 self.indicatorView.stopAnimating()
@@ -161,6 +170,8 @@ class ProfileVC: UIViewController {
                 self.tv.reloadData()
                 self.profileImage.image = self.uInfo.profile
                 self.drawBtn()
+
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
             }
         })
         self.present(alert, animated: true)
