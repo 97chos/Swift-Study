@@ -79,7 +79,7 @@ class MemoListVC: UITableViewController {
         cell.contents.text = row.contents
         cell.img?.image = row.image
 
-        // 5. 데이터 타입의 날짜를 yyyy-mm-dd HH:mm:ss 포맷에 맞게 변경한다.
+        // 5. 데이터 타입의 날짜를 yyyy-mm-dd HH:mm:ss 포맷에 맞게 변경
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-mm-dd HH:mm:ss"
         cell.regdate.text = formatter.string(from: row.regdate!)
@@ -88,6 +88,8 @@ class MemoListVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        self.searchBar.resignFirstResponder()
         let row = self.appDelegate.memoList[indexPath.row]
 
         guard let vc = self.storyboard?.instantiateViewController(identifier: "MemoRead") as? MemoReadVC else {
@@ -126,6 +128,7 @@ extension MemoListVC: UISearchBarDelegate {
         // 키워드를 적용하여 데이터를 검색하고, 테이블뷰를 갱신
         self.appDelegate.memoList = self.dao.fetch(Keyword: keyword)
         self.tableView.reloadData()
+        self.searchBar.resignFirstResponder()
     }
 
     // 텍스트 편집 시 호출되는 메소드
@@ -136,5 +139,7 @@ extension MemoListVC: UISearchBarDelegate {
         self.tableView.reloadData()
 
     }
+
+
 
 }
