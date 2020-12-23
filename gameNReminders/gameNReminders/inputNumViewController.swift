@@ -19,18 +19,19 @@ class inputNumViewController: UIViewController {
     var correctTitle = UILabel()
     var correctRange = UILabel()
 
-    var zero = UIButton()
-    var one = UIButton()
-    var two = UIButton()
-    var thr = UIButton()
-    var four = UIButton()
-    var five = UIButton()
-    var six = UIButton()
-    var sev = UIButton()
-    var eig = UIButton()
-    var nine = UIButton()
-    var delete = UIButton()
-    var done = UIButton()
+
+    var zero = UIButton(type: .system)
+    var one = UIButton(type: .system)
+    var two = UIButton(type: .system)
+    var thr = UIButton(type: .system)
+    var four = UIButton(type: .system)
+    var five = UIButton(type: .system)
+    var six = UIButton(type: .system)
+    var sev = UIButton(type: .system)
+    var eig = UIButton(type: .system)
+    var nine = UIButton(type: .system)
+    var delete = UIButton(type: .system)
+    var done = UIButton(type: .system)
 
     let ad = UIApplication.shared.delegate as? AppDelegate
     var delegate: inputNumDelegate?
@@ -38,6 +39,13 @@ class inputNumViewController: UIViewController {
     lazy var margin = self.view.layoutMarginsGuide
 
     override func viewDidLoad() {
+
+        let buttonList = [zero,one,two,thr,four,five,six,sev,eig,nine,delete,done]
+        let buttonTitles = ["0","1","2","3","4","5","6","7","8","9","Delete","Done"]
+
+        for n in 0..<buttonList.count {
+            self.buttonLayout(button: buttonList[n], title: buttonTitles[n])
+        }
 
         self.view.backgroundColor = .white
 
@@ -86,18 +94,6 @@ class inputNumViewController: UIViewController {
         currentValueLayout()
         correctTitleLayout()
         correctRangeLayout()
-        oneLayout()
-        twoLayout()
-        thrLayout()
-        fourLayout()
-        fiveLayout()
-        sixLayout()
-        sevLayout()
-        eigLayout()
-        nineLayout()
-        deleteLayout()
-        zeroLayout()
-        doneLayout()
 
         one.addTarget(self, action: #selector(oneAction), for: .touchUpInside)
         two.addTarget(self, action: #selector(twoAction), for: .touchUpInside)
@@ -171,7 +167,7 @@ class inputNumViewController: UIViewController {
     //MARK:-- Keypad Layout
     func stackViewFactory(type: NSLayoutConstraint.Axis) -> UIStackView {
         let row = UIStackView()
-        row.axis = .horizontal
+        row.axis = type
         row.alignment = .fill
         row.distribution = .fillEqually
         row.spacing = 10
@@ -180,53 +176,8 @@ class inputNumViewController: UIViewController {
         return row
     }
 
-    func oneLayout() {
-        one.setTitle("1", for: .normal)
-        one.setTitleColor(.systemBlue, for: .normal)
-    }
-    func twoLayout() {
-        two.setTitle("2", for: .normal)
-        two.setTitleColor(.systemBlue, for: .normal)
-    }
-    func thrLayout() {
-        thr.setTitle("3", for: .normal)
-        thr.setTitleColor(.systemBlue, for: .normal)
-    }
-    func fourLayout() {
-        four.setTitle("4", for: .normal)
-        four.setTitleColor(.systemBlue, for: .normal)
-    }
-    func fiveLayout() {
-        five.setTitle("5", for: .normal)
-        five.setTitleColor(.systemBlue, for: .normal)
-    }
-    func sixLayout() {
-        six.setTitle("6", for: .normal)
-        six.setTitleColor(.systemBlue, for: .normal)
-    }
-    func sevLayout() {
-        sev.setTitle("7", for: .normal)
-        sev.setTitleColor(.systemBlue, for: .normal)
-    }
-    func eigLayout() {
-        eig.setTitle("8", for: .normal)
-        eig.setTitleColor(.systemBlue, for: .normal)
-    }
-    func nineLayout() {
-        nine.setTitle("9", for: .normal)
-        nine.setTitleColor(.systemBlue, for: .normal)
-    }
-    func deleteLayout() {
-        delete.setTitle("Delete", for: .normal)
-        delete.setTitleColor(.systemBlue, for: .normal)
-    }
-    func zeroLayout() {
-        zero.setTitle("0", for: .normal)
-        zero.setTitleColor(.systemBlue, for: .normal)
-    }
-    func doneLayout() {
-        done.setTitle("Done", for: .normal)
-        done.setTitleColor(.systemBlue, for: .normal)
+    func buttonLayout(button: UIButton, title: String) {
+        button.setTitle(title, for: .normal)
     }
 
     @objc func oneAction() {
@@ -307,7 +258,6 @@ class inputNumViewController: UIViewController {
             self.dismiss(animated: true)
             return
         }
-
         self.delegate?.didInputed(number: number)
         self.ad?.paramValue = number
 
