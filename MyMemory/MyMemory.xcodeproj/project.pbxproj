@@ -143,29 +143,16 @@
 		FF3822CB256E100600834B35 /* MyMemory */ = {
 			isa = PBXGroup;
 			children = (
-				FF65A5B725762F310034CB8C /* SWRevealViewController.h */,
-				FF65A5B825762F310034CB8C /* SWRevealViewController.m */,
-				FF3822CC256E100600834B35 /* AppDelegate.swift */,
-				FF3822CE256E100600834B35 /* SceneDelegate.swift */,
-				FF3822D2256E100600834B35 /* Main.storyboard */,
-				FF76C12A25887D7400AEE5FC /* JoinVC.swift */,
-				FF3822F3256E338D00834B35 /* MemoData.swift */,
-				FF76BF892587058A00AEE5FC /* MemoDAO.swift */,
-				FF3822F0256E332800834B35 /* MemoCell.swift */,
-				FF3822E9256E325A00834B35 /* MemoFormVC.swift */,
-				FF65A5282574D2FF0034CB8C /* CSLogButton.swift */,
-				FF3822EC256E327A00834B35 /* MemoReadVC.swift */,
-				FF3822E6256E321900834B35 /* MemoListVC.swift */,
-				FF65A5CE257634EC0034CB8C /* SideBarVC.swift */,
-				FF65A5D1257687E50034CB8C /* ProfileVC.swift */,
-				FFDDC0D62578D3E200162835 /* UserInfoManager.swift */,
-				FF3822D8256E100A00834B35 /* Assets.xcassets */,
-				FF3822DA256E100A00834B35 /* LaunchScreen.storyboard */,
-				FF3822D5256E100600834B35 /* MyMemory.xcdatamodeld */,
-				FF59BD1F2589E5DB0047CC7A /* DataSync.swift */,
-				FF3822DD256E100A00834B35 /* Info.plist */,
+				FF6CDBF1259A1A6300B7F556 /* Memo Read View  */,
+				FF6CDBF5259A1ACE00B7F556 /* Memo List View */,
+				FF6CDBF2259A1A9700B7F556 /* Memo Write View */,
+				FF6CDBF6259A1AF800B7F556 /* User Information */,
+				FF6CDBF7259A1B2900B7F556 /* Sidebar */,
 				FFDDC0E225794D8B00162835 /* Tutorial */,
-				FF65A5B525762F300034CB8C /* MyMemory-Bridging-Header.h */,
+				FF6CDBFB259A1BD400B7F556 /* Delegate File */,
+				FF6CDBFA259A1BC600B7F556 /* Storyboard */,
+				FF6CDBFC259A1BF000B7F556 /* Data & Setting */,
+				FF3822D8256E100A00834B35 /* Assets.xcassets */,
 			);
 			path = MyMemory;
 			sourceTree = "<group>";
@@ -188,6 +175,83 @@
 				FF65A52F2574D59E0034CB8C /* warning-icon-60@2x.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		FF6CDBF1259A1A6300B7F556 /* Memo Read View  */ = {
+			isa = PBXGroup;
+			children = (
+				FF3822EC256E327A00834B35 /* MemoReadVC.swift */,
+			);
+			path = "Memo Read View ";
+			sourceTree = "<group>";
+		};
+		FF6CDBF2259A1A9700B7F556 /* Memo Write View */ = {
+			isa = PBXGroup;
+			children = (
+				FF3822F3256E338D00834B35 /* MemoData.swift */,
+				FF3822E9256E325A00834B35 /* MemoFormVC.swift */,
+				FF76BF892587058A00AEE5FC /* MemoDAO.swift */,
+			);
+			path = "Memo Write View";
+			sourceTree = "<group>";
+		};
+		FF6CDBF5259A1ACE00B7F556 /* Memo List View */ = {
+			isa = PBXGroup;
+			children = (
+				FF3822E6256E321900834B35 /* MemoListVC.swift */,
+				FF3822F0256E332800834B35 /* MemoCell.swift */,
+				FF65A5282574D2FF0034CB8C /* CSLogButton.swift */,
+			);
+			path = "Memo List View";
+			sourceTree = "<group>";
+		};
+		FF6CDBF6259A1AF800B7F556 /* User Information */ = {
+			isa = PBXGroup;
+			children = (
+				FF76C12A25887D7400AEE5FC /* JoinVC.swift */,
+				FFDDC0D62578D3E200162835 /* UserInfoManager.swift */,
+				FF65A5D1257687E50034CB8C /* ProfileVC.swift */,
+			);
+			path = "User Information";
+			sourceTree = "<group>";
+		};
+		FF6CDBF7259A1B2900B7F556 /* Sidebar */ = {
+			isa = PBXGroup;
+			children = (
+				FF65A5B725762F310034CB8C /* SWRevealViewController.h */,
+				FF65A5B825762F310034CB8C /* SWRevealViewController.m */,
+				FF65A5CE257634EC0034CB8C /* SideBarVC.swift */,
+				FF65A5B525762F300034CB8C /* MyMemory-Bridging-Header.h */,
+			);
+			path = Sidebar;
+			sourceTree = "<group>";
+		};
+		FF6CDBFA259A1BC600B7F556 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				FF3822D2256E100600834B35 /* Main.storyboard */,
+				FF3822DA256E100A00834B35 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		FF6CDBFB259A1BD400B7F556 /* Delegate File */ = {
+			isa = PBXGroup;
+			children = (
+				FF3822CC256E100600834B35 /* AppDelegate.swift */,
+				FF3822CE256E100600834B35 /* SceneDelegate.swift */,
+			);
+			path = "Delegate File";
+			sourceTree = "<group>";
+		};
+		FF6CDBFC259A1BF000B7F556 /* Data & Setting */ = {
+			isa = PBXGroup;
+			children = (
+				FF3822D5256E100600834B35 /* MyMemory.xcdatamodeld */,
+				FF3822DD256E100A00834B35 /* Info.plist */,
+				FF59BD1F2589E5DB0047CC7A /* DataSync.swift */,
+			);
+			path = "Data & Setting";
 			sourceTree = "<group>";
 		};
 		FFDDC0E225794D8B00162835 /* Tutorial */ = {

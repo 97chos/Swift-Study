@@ -119,7 +119,7 @@ class MemoListVC: UITableViewController {
 
 extension MemoListVC: UISearchBarDelegate {
 
-    // 검색바를 터치하면 호출되는 메소드
+    // 검색 버튼을 터치하면 호출되는 메소드
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 
         // 검색바에 입력된 키워드 가져오기
@@ -137,7 +137,6 @@ extension MemoListVC: UISearchBarDelegate {
 
         self.appDelegate.memoList = self.dao.fetch(Keyword: keyword)
         self.tableView.reloadData()
-
     }
 
 
