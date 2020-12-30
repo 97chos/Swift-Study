@@ -43,7 +43,7 @@ class MemoDAO {
                 // 4. MemoMO 프로퍼티 값을 MemoData의 프로퍼티로 복사
                 data.title = record.title
                 data.contents = record.contents
-                data.regdate = record.regdate! as Date
+                data.regdate = record.regdate
                 data.objectID = record.objectID
 
                 // 4-1. 이미지가 있을 때만 복사

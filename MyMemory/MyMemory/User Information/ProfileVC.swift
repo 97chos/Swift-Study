@@ -83,18 +83,18 @@ class ProfileVC: UIViewController {
         self.indicator.hidesWhenStopped = true
         self.view.addSubview(indicator)
 
-//        // 키 체인 저장 여부 확인을 위한 코드
-//        let tk = TokenUtils()
-//        if let accessToken = tk.load("kr.co.rubypaper.MyMemory", account: "accessToken") {
-//            print("accessToken = \(accessToken)")
-//        } else {
-//            print("aeccesstoken is nil")
-//        }
-//        if let refreshToken = tk.load("kr.co.rubypaper.MyMemory", account: "refreshToken") {
-//            print("refreshToken = \(refreshToken)")
-//        } else {
-//            print("refreshtoken is nil")
-//        }
+        // 키 체인 저장 여부 확인을 위한 코드
+        let tk = TokenUtils()
+        if let accessToken = tk.load("kr.co.rubypaper.MyMemory", account: "accessToken") {
+            print("accessToken = \(accessToken)")
+        } else {
+            print("aeccesstoken is nil")
+        }
+        if let refreshToken = tk.load("kr.co.rubypaper.MyMemory", account: "refreshToken") {
+            print("refreshToken = \(refreshToken)")
+        } else {
+            print("refreshtoken is nil")
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {

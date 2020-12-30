@@ -20,7 +20,6 @@ struct UserInfoKey {
 
 // 계정 및 사용자 정보를 저장 관리하는 클래스
 class UserInfoManager {
-    
     // 연산 프로퍼티 loginId 정의
     var logInId: Int {
         get {
@@ -82,32 +81,32 @@ class UserInfoManager {
         }
     }
 
-    // 로그인 처리 메소드
-    func login(account: String, passwd: String, success: (()->Void)? = nil, fail: ((String) -> Void)? = nil) {
+    //MARK: - 로그인 처리 메소드
+    func login(account: String, passwd: String, success: (() -> Void)? = nil, fail: ((String) -> Void)? = nil) {
 
         // 1. URL과 전송할 값 준비
         let url = "http://swiftapi.rubypaper.co.kr:2029/userAccount/login"
         let param: Parameters = [
             "account" : account,
-            "passwd"  : passwd
+            "passwd" : passwd
         ]
 
-        // 2. API 호출
+        // 2. api 호출
         let call = AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default)
 
-        // 3. API 호출 결과 정리
-        call.responseJSON() { res in
-            // 3-1. JSON 형식으로 응답했는지 확인
+        // 3-1. JSON 형식으로 응답했는지 확인
+        call.responseJSON { res in
+
             let result = try! res.result.get()
+
             guard let jsonObject = result as? NSDictionary else {
-                fail?("잘못된 응답 형식입니다:\(result)")
+                fail?("잘못된 응답 형식입니다.")
                 return
             }
 
-            // 3-2. 응답 코드 확인. 0이면 성공
-            let resultCode = jsonObject["result_code"] as! Int
-            if resultCode == 0 {        // 로그인 성공
-                // 3-3. 로그인 성공 처리 로직
+        // 3-2. 응답 코드 확인, 0이면 성공
+            if jsonObject["result_code"] as! Int == 0 {
+                // 3-3. 로그인 성공 로직
                 let user = jsonObject["user_info"] as! NSDictionary
 
                 self.logInId = user["user_id"] as! Int
@@ -122,26 +121,23 @@ class UserInfoManager {
                 }
 
                 // 토큰 정보 추출
-                let accessToken = jsonObject["access_token"] as! String     // 액세스 토큰 추출
-                let refreshToken = jsonObject["refresh_token"] as! String   // 리프레쉬 토큰 추출
+                let accessToken = jsonObject["access_token"] as! String         // 액세스 토큰 추출
+                let refreshToken = jsonObject["refresh_token"] as! String       // 리프레시 토큰 추출
 
                 // 토큰 정보 저장
                 let tk = TokenUtils()
-                tk.save("kr.co.rubypaper.Mymemory", account: "accessToken", value: accessToken)
-                tk.save("kr.co.rubypaper.Mymemory", account: "refreshToken", value: refreshToken)
-
-                // 3-5. 인자값으로 입력된 success 클로저 블록 실행
+                tk.save("kr.co.rubypaper.MyMemory", account: "accessToken", value: accessToken)
+                tk.save("kr.co.rubypaper.MyMemory", account: "refreshToken", value: refreshToken)
                 success?()
             } else {
-                let msg = (jsonObject["error_msg"] as? String) ?? "로그인에 실패했습니다."
+                let msg = (jsonObject["error_msg"] as? String) ?? "로그인이 실패했습니다."
                 fail?(msg)
             }
         }
     }
 
-    // 로그아웃 처리 메소드
-    func logout(complletion: (()->Void)? = nil) {
-
+    //MARK: - 로그아웃 처리 메소드
+    func logout(completions: (() -> Void)? = nil) {
         // 1. 호출 URL
         let url = "http://swiftapi.rubypaper.co.kr:2029/userAccount/logout"
 
@@ -150,17 +146,17 @@ class UserInfoManager {
         let header = tokenUtils.getAutorizationHeader()
 
         // 3. API 호출 및 응답 처리
-        let call = AF.request(url,method: .post, encoding: JSONEncoding.default, headers: header)
+        let call = AF.request(url, method: .post, encoding: JSONEncoding.default, headers: header)
+
         call.responseJSON { _ in
             // 디바이스 로그아웃
             self.deviceLogout()
 
-            // 전달 완료 받은 클로저 실행
-            complletion?()
+            // 전달받은 완료 클로저 실행
+            completions?()
         }
     }
 
-    // 디바이스 수준 로그아웃
     func deviceLogout() {
         // 기본 저장소에 저장된 값을 모두 삭제
         let ud = UserDefaults.standard
@@ -170,30 +166,30 @@ class UserInfoManager {
         ud.removeObject(forKey: UserInfoKey.profile)
         ud.synchronize()
 
-        // 키 체인에 저장된 값 모두 삭제
+        // 키 체인에 저장된 값을 모두 삭제
         let tokenUtils = TokenUtils()
         tokenUtils.delete("kr.co.rubypaper.MyMemory", account: "refreshToken")
-        tokenUtils.delete("kr.co.rubypaper.MeMemory", account: "accessToken")
+        tokenUtils.delete("kr.co.rubypaper.MyMemory", account: "accessToken")
     }
 
-    // 프로필 이미지 업데이트 메소드
-    func newProfile(_ profile: UIImage?, success: (()->Void)? = nil, fail: ((String)->Void)? = nil) {
+    // MARK: - 프로필 이미지 변경 메소드
+    func newProfile(_ profile: UIImage?, success: (() -> Void)? = nil, fail: ((String) -> Void)? = nil) {
 
-        // API 호출 URL
-        let url = "http://swiftapi.rubypaper.co.kr:2029/userAccount/profile"
+        // 1. API 호출 메소드
+        let url = "http:/swiftapi.rubypaper.co.kr:2029/userAccount/profile"
 
-        // 인증 센터
+        // 2. 인증 헤더
         let tk = TokenUtils()
         let header = tk.getAutorizationHeader()
 
-        // 전송할 프로필 이미지
+        // 3. 전송할 프로필 이미지
         let profileData = profile!.pngData()?.base64EncodedString()
-        let param: Parameters = ["profile_image" : profileData!]
+        let param: Parameters = [ "profile_image" : profileData! ]
 
-        // 이미지 전송
+        // 4. 이미지 전송
         let call = AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: header)
-        call.responseJSON() { res in
 
+        call.responseJSON() { res in
             guard let jsonObject = try! res.result.get() as? NSDictionary else {
                 fail?("올바른 응답값이 아닙니다.")
                 return
@@ -202,10 +198,10 @@ class UserInfoManager {
             // 응답 코드 확인
             let resultCode = jsonObject["result_code"] as! Int
             if resultCode == 0 {
-                self.profile = profile                  // 이미지 업로드 후 UserDefault 객체에 저장된 이미지도 변경
+                self.profile = profile
                 success?()
             } else {
-                let msg = (jsonObject["error_msg"] as? String) ?? "이미지 프로필 변경에 실패했습니다."
+                let msg = (jsonObject["error_msg"] as? String) ?? "이미지 변경에 실패하였습니다."
                 fail?(msg)
             }
         }
