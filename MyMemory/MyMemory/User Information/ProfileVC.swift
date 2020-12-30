@@ -15,15 +15,19 @@ class ProfileVC: UIViewController {
     let profileImage = UIImageView()    // 프로필 사진 이미지
     let tv = UITableView()              // 프로필 목록
     let uInfo = UserInfoManager()       // 개인 정보 관리 매니저
-    var isCalling = false               // API 호출 상태값 관리 변수
-    
-    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
+
+    let indicator = UIActivityIndicatorView(style: .large)
+
+    // API 호출 상태값을 관리할 변수
+    var isCalling = false
+
+    // 이전 화면 복귀용 메소드
+    @IBAction func backProfileVC(_ segue: UIStoryboardSegue) {
+        // 새 계정 입력 화면에서 프로필 화면으로 되돌아오기 위한 표지만 역할만 할 뿐이므로 아무런 내용도 작성하지 않음
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // 토큰 인증 여부 체크
-        self.tokenvalidate()
 
         self.navigationItem.title = "프로필"
 
@@ -74,17 +78,28 @@ class ProfileVC: UIViewController {
         // 해당 객체가 사용자와 상호작용 할 수 있도록 속성 설정
         self.profileImage.isUserInteractionEnabled = true
 
-        // 인디케이터 뷰 맨 위로 가져오기
-        self.view.bringSubviewToFront(self.indicatorView)
+        // 인디케이터 설정
+        self.indicator.tintColor = .darkGray
+        self.indicator.hidesWhenStopped = true
+        self.view.addSubview(indicator)
 
+//        // 키 체인 저장 여부 확인을 위한 코드
+//        let tk = TokenUtils()
+//        if let accessToken = tk.load("kr.co.rubypaper.MyMemory", account: "accessToken") {
+//            print("accessToken = \(accessToken)")
+//        } else {
+//            print("aeccesstoken is nil")
+//        }
+//        if let refreshToken = tk.load("kr.co.rubypaper.MyMemory", account: "refreshToken") {
+//            print("refreshToken = \(refreshToken)")
+//        } else {
+//            print("refreshtoken is nil")
+//        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        if self.uInfo.isLogin {
-            self.navigationItem.rightBarButtonItem?.isEnabled = false
-        } else {
-            self.navigationItem.rightBarButtonItem?.isEnabled = true
-        }
+        // 토큰 인증 여부 체크
+        self.tokenValidate()
     }
 
     //MARK: - 창 닫기 메소드
@@ -95,8 +110,9 @@ class ProfileVC: UIViewController {
     //MARK: - 로그인 창 표시 메소드
     @objc func doLogin(_ sender: Any) {
 
+        // API 중복 요청 방직 처리
         if self.isCalling == true {
-            self.alert("응답을 기다리는 중입니다. \n 잠시만 기다려주세요.")
+            self.alert("응답을 기다리는 중입니다. \n잠시만 기다려주세요.")
             return
         } else {
             self.isCalling = true
@@ -118,41 +134,30 @@ class ProfileVC: UIViewController {
             self.isCalling = false
         })
         loginAlert.addAction(UIAlertAction(title: "Login", style: .default){ _ in
-
             // 인디케이터 실행
-            self.indicatorView.startAnimating()
+            self.indicator.startAnimating()
 
             let account = loginAlert.textFields?[0].text ?? ""
             let passwd = loginAlert.textFields?[1].text ?? ""
 
-            // 비동기 방식으로 적용되는 부분
             self.uInfo.login(account: account, passwd: passwd, success: {
                 // 인디케이터 종료
-                self.indicatorView.stopAnimating()
+                self.indicator.stopAnimating()
+                self.isCalling = false
 
-                self.tv.reloadData()                                // 테이블 뷰 갱신
-                self.profileImage.image = self.uInfo.profile        // 이미지 프로파일 갱신
+                self.tv.reloadData()                                    // 테이블 뷰 갱신
+                self.profileImage.image = self.uInfo.profile            // 추가 이미지 프로필 갱신
                 self.drawBtn()
-
-                // 서버와 데이터 동기화
-                let sync = DataSync()
-                DispatchQueue.global(qos: .background).async {      // 블록 내에 작성된 코드를 백그라운드에서 실행할 수 있게 해주는 글로벌 큐
-                    sync.downloadBackupData()
-                }
-                DispatchQueue.global(qos: .background).async {
-                    sync.uploadData()
-                }
-                self.navigationItem.rightBarButtonItem?.isEnabled = false
             }, fail: { msg in
-                // 인디케이터 종료
-                self.indicatorView.stopAnimating()
+                self.indicator.stopAnimating()
+                self.isCalling = false
+
                 self.alert(msg)
             })
-            self.isCalling = false
         })
         self.present(loginAlert, animated: true)
     }
-    
+
     //MARK: - 로그아웃 메소드
     @objc func doLogout(_ sender: Any) {
         let msg = "로그아웃하시겠습니까?"
@@ -160,18 +165,16 @@ class ProfileVC: UIViewController {
 
         alert.addAction(UIAlertAction(title: "취소", style: .cancel))
         alert.addAction(UIAlertAction(title: "확인", style: .default) { _ in
-            // 인디케이터 실행
-            self.indicatorView.startAnimating()
+
+            self.indicator.startAnimating()
 
             self.uInfo.logout() {
-                // 인디케이터 종료
-                self.indicatorView.stopAnimating()
+                // Logout API 호출 및 logout() 메소드 실행이 모두 끝나면 로딩뷰 종료
+                self.indicator.stopAnimating()
 
                 self.tv.reloadData()
-                self.profileImage.image = self.uInfo.profile
+                self.profileImage.image = self.uInfo.profile        // 이미지 프로필 갱신
                 self.drawBtn()
-
-                self.navigationItem.rightBarButtonItem?.isEnabled = true
             }
         })
         self.present(alert, animated: true)
@@ -186,7 +189,6 @@ extension ProfileVC: UITableViewDelegate {
         cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
         cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 13)
         cell.accessoryType = .disclosureIndicator
-        cell.selectionStyle = .none
 
         switch indexPath.row {
         case 0 :
@@ -198,6 +200,7 @@ extension ProfileVC: UITableViewDelegate {
         default:
             break
         }
+
         return cell
     }
 
@@ -207,7 +210,6 @@ extension ProfileVC: UITableViewDelegate {
             self.doLogin(self.tv)
         }
     }
-
     //MARK: - 로그인/로그아웃 버튼 메소드
     func drawBtn() {
         // 버튼을 감쌀 뷰 정의
@@ -293,56 +295,51 @@ extension ProfileVC: UIImagePickerControllerDelegate {
 
     // 이미지 선택 시 자동으로 호출되는 델리게이트 메소드
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        // 인디케이터 실행
-        self.indicatorView.startAnimating()
+
+        self.indicator.startAnimating()
 
         if let img = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-
             self.uInfo.newProfile(img, success: {
-                // 인디케이터 종료
-                self.indicatorView.stopAnimating()
-                self.profileImage.image = img
+                self.indicator.stopAnimating()
+                DispatchQueue.main.async {
+                    self.profileImage.image = img
+                }
             }, fail: { msg in
-                // 인디케이터 종료
-                self.indicatorView.stopAnimating()
+                self.indicator.stopAnimating()
                 self.alert(msg)
             })
-
-            self.uInfo.profile = img
-            self.profileImage.image = img
         }
         picker.dismiss(animated: true)
     }
 }
 
 extension ProfileVC: UINavigationControllerDelegate {
-    @IBAction func backProfile(_ segue: UIStoryboardSegue) {
-        
-    }
 
 }
 
+
 extension ProfileVC {
-    // 토큰 인증 메소드
-    func tokenvalidate() {
+
+    //MARK: - 토큰 인증 메소드
+    func tokenValidate() {
         // 0. 응답 캐시를 사용하지 않도록
         URLCache.shared.removeAllCachedResponses()
 
-        // 1. 키 체인에 엑세스 토큰이 없을 경우 유효성 검증을 진행하지 않음
+        // 1. 키 체인에 엑세스 토큰이 없을 경우 유효성 검증을 진행하지 않음 (로그인이 안 되어있는 경우)
         let tk = TokenUtils()
-        guard let header = tk.getAutorizationHeader() else {
+        guard let header = tk.getAutoHeader else {
             return
         }
 
         // 로딩 인디케이터 시작
-        self.indicatorView.startAnimating()
+        self.indicator.startAnimating()
 
-        // 2. 액세스 토큰 유효성 검사 API인 tokenValidate API 호출
-        let url = "http://swiftapi.rupypaper.co.kr:2029/userAccount/tokenValidate"
+        // 2. tokenValidate API 호출
+        let url = "http://swiftapi.rubypaper.co.kr:2029/userAccount/tokenValidate"
         let validate = AF.request(url, method: .post, encoding: JSONEncoding.default, headers: header)
 
         validate.responseJSON() { res in
-            self.indicatorView.stopAnimating()
+            self.indicator.stopAnimating()
 
             let responseBody = try! res.result.get()
             print(responseBody)
@@ -353,18 +350,14 @@ extension ProfileVC {
 
             // 3. 응답 결과 처리
             let resultCode = jsonObject["result_code"] as! Int
-
-            // 3-1. 응답 결과가 실패일 때, 즉 토큰이 만료되었을 때
-            if resultCode != 0 {
-                // 로컬 인증 실행
+            if resultCode != 0 {        // 응답 결과가 실패일 경우
                 self.touchID()
             }
         }
     }
 
-    // 터치 아이디 인증 메소드
+    //MARK: - 터치 아이디 인증 메소드
     func touchID() {
-
         // 1. LAContext 인스턴스 생성
         let context = LAContext()
 
@@ -373,24 +366,24 @@ extension ProfileVC {
         let msg = "인증이 필요합니다."
         let deviceAuth = LAPolicy.deviceOwnerAuthenticationWithBiometrics   // 인증 정책
 
-        // 3. 로컬 인증이 사용 가능한지 여부 확인
+        // 3. 로컬인증서 사용이 가능한지 여부 확인
         if context.canEvaluatePolicy(deviceAuth, error: &error) {
             // 4. 터치 아이디 인증창 실행
-            context.evaluatePolicy(deviceAuth, localizedReason: msg) { (success, e) in
-                if success {                    // 5. 인증 성공 : 토큰 갱신 로직
+            context.evaluatePolicy(deviceAuth, localizedReason: msg, reply: { success, e in
+                if success {                        // 인증 성공 : 토큰 갱신 로직
+                    // 5-1. 토큰 갱신 로직 실행
                     self.refresh()
-                } else {                        // 6. 인증 실패
+                } else {                            // 인증 실패
                     print((e?.localizedDescription)!)
 
-                    switch (e!._code) {
+                    switch e!._code {
                     case LAError.systemCancel.rawValue:
                         self.alert("시스템에 의해 인증이 취소되었습니다.")
                     case LAError.userCancel.rawValue:
-                        self.alert("사용자에 의해 인증이 취소되었습니다.") {
+                        self.alert("사용자에 의해 인증이 취소되었습니다."){
                             self.commonLogout(true)
                         }
-                    case LAError.userFallback.rawValue:
-                        // 경고창과 인증창이 서로 충돌하는 것을 막기위해, 큐에 들어온 작업들이 순차적으로 처리되도록 해주는 메소드
+                    case LAError.userFallback.rawValue:                 // 사용자가 로컬 인증 대신 암호를 선택한 경우, 인증창과 경고창이 서로 충돌할 수 있기에 operationqueue를 사용하여 순차적으로 처리
                         OperationQueue.main.addOperation {
                             self.commonLogout(true)
                         }
@@ -400,15 +393,16 @@ extension ProfileVC {
                         }
                     }
                 }
-            }
-        } else {                                // 7. 인증창이 실행되지 못한 경우
+            })
+        } else {    // 인증창이 실행되지 않은 내용에 대한 경우
+            // 인증 실행 불가 원인에 따른 대응 로직 실행
             print(error!.localizedDescription)
-            switch (error?.code) {
+            switch (error!.code) {
             case LAError.biometryNotEnrolled.rawValue:
-                print("터치 아이디를 등록해주세요.")
+                print("터치 아이디가 등록되어 있지 않습니다.")
             case LAError.passcodeNotSet.rawValue:
-                print("패스 코드를 설정해주세요.")
-            default:
+                print("패스 코드가 설정되어 있지 않습니다.")
+            default:        // LAError.touchIDNotAvailable 포함
                 print("터치 아이디를 사용할 수 없습니다.")
             }
             OperationQueue.main.addOperation {
@@ -417,23 +411,25 @@ extension ProfileVC {
         }
     }
 
-    // 토큰 갱신 메소드
+    //MARK: - 토큰 갱신 메소드
     func refresh() {
-        self.indicatorView.startAnimating()     // 로딩 시작
+        self.indicator.startAnimating()
 
         // 1. 인증 헤더
         let tk = TokenUtils()
-        let header = tk.getAutorizationHeader()
+        let header = tk.getAutoHeader
 
-        // 2. 리프레쉬 토큰 전달 준비
-        let refreshToken = tk.load("kr.co.rubypaer.MyMemory", account: "refreshToken", value: "")
-        let param: Parameters = ["refresh_token": refreshToken!]
+        // 2. 리프레시 토큰 전달 준비
+        let refreshToken = tk.load("kr.co.rubypaper.MyMemory", account: "refreshToken")
+        let param: Parameters = ["refresh_token" : refreshToken!]
 
         // 3. 호출 및 응답
-        let url = "http://swiftapi.rupypaper.co.kr:2029/userAccount/refresh"
+        let url = "http://swiftapi.rubypaper.co.kr:2029/userAccount/refresh"
         let refresh = AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: header)
-        refresh.responseJSON() { res in
-            self.indicatorView.stopAnimating()  // 로딩 중지
+
+        refresh.responseJSON { res in
+            self.indicator.startAnimating()
+
             guard let jsonObject = try! res.result.get() as? NSDictionary else {
                 self.alert("잘못된 응답입니다.")
                 return
@@ -441,31 +437,28 @@ extension ProfileVC {
 
             // 4. 응답 결과 처리
             let resultCode = jsonObject["result_code"] as! Int
-
-            // 성공 : 엑세스 토큰이 갱신됨
-            if resultCode == 0 {
-                // 4-1. 키체인에 저장된 엑세스 토큰 교체
+            if resultCode == 0 {                // 성공 : 액세스 토큰이 갱신됨
+                // 4-1. 키 체인에 저장된 액세스 토큰 교체
                 let accessToken = jsonObject["access_token"] as! String
-                tk.save("kr.co.rubypaper.MeMemory", account: "accessToken", value: accessToken)
-            } else {        // 실패 : 엑세스 토큰 없음
-                self.alert("인증이 만료되었습니다. 다시 로그인해야 합니다.") {
-                    OperationQueue.main.addOperation {
-                        self.commonLogout(true)
-                    }
+                tk.save("kr.co.rubypaper.MyMemory", account: "accessToken", value: accessToken)
+            } else {                            // 실패 : 액세스 토큰 만료
+                self.alert("인증이 만료되었습니다.\n다시 로그인해주세요.")
+                // 4-2. 로그아웃 처리
+                OperationQueue.main.addOperation {
+                    self.commonLogout(true)
                 }
             }
         }
     }
 
-    // 토큰 갱신 과정에서 발생할 실패 상황에서 사용되는 로그아웃 메소드
+    //MARK: - 토큰 갱신 실패 과정을 포함한 각종 오류 상황에서 사용될 로그아웃 메소드
     func commonLogout(_ isLogin: Bool = false) {
-
         // 1. 저장된 기존 개인 정보 & 키 체인 데이터를 삭제하여 로그아웃 상태로 전환
         let userInfo = UserInfoManager()
         userInfo.deviceLogout()
 
-        // 2. 프로필 화면 UI 갱신
-        self.tv.reloadData()    // 테이블 뷰 갱신
+        // 2. 현재의 화면이 프로필 화면이라면 UI 갱신
+        self.tv.reloadData()
         self.profileImage.image = userInfo.profile
         self.drawBtn()
 
