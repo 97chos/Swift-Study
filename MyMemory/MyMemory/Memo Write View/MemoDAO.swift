@@ -77,18 +77,8 @@ class MemoDAO {
         // 3. 영구 저장소에 변경 사항을 반영
         do {
             try self.context.save()
-
-            // 로그인 되어 있을 경우 서버에 데이터 업로드
-            let tk = TokenUtils()
-            if tk.getAutorizationHeader() != nil {
-                DispatchQueue.global(qos: .background).async {
-                    // 서버에 데이터를 업로드
-                    let sync = DataSync()
-                    sync.uploadDatum(object)
-                }
-            }
         } catch let e as NSError {
-            NSLog("An error has occurred : %s", e.localizedDescription)
+            NSLog("An error has occured : %s", e.localizedDescription)
         }
     }
 

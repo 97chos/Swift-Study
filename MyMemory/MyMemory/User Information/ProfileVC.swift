@@ -148,6 +148,12 @@ class ProfileVC: UIViewController {
                 self.tv.reloadData()                                    // 테이블 뷰 갱신
                 self.profileImage.image = self.uInfo.profile            // 추가 이미지 프로필 갱신
                 self.drawBtn()
+
+                // 서버와 데이터 동기화
+                let sync = DataSync()
+                DispatchQueue.global(qos: .background).async {
+                    sync.downloadBackupData()                           // 서버에 저장된 데이터가 있으면 내려받는다.
+                }
             }, fail: { msg in
                 self.indicator.stopAnimating()
                 self.isCalling = false
