@@ -126,7 +126,7 @@ extension MemoListVC: UISearchBarDelegate {
         let keyword = searchBar.text
 
         // 키워드를 적용하여 데이터를 검색하고, 테이블뷰를 갱신
-        self.appDelegate.memoList = self.dao.fetch(Keyword: keyword)
+        self.appDelegate.memoList = self.dao.fetch(keyword: keyword)
         self.tableView.reloadData()
         self.searchBar.resignFirstResponder()
     }
@@ -135,7 +135,7 @@ extension MemoListVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let keyword = searchText
 
-        self.appDelegate.memoList = self.dao.fetch(Keyword: keyword)
+        self.appDelegate.memoList = self.dao.fetch(keyword: keyword)
         self.tableView.reloadData()
     }
 

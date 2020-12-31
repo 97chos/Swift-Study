@@ -10,90 +10,102 @@ import CoreData
 
 class MemoDAO {
 
-    // 관리 객체 컨텍스트 반환
+    // 객체 관리 컨텍스트
     lazy var context: NSManagedObjectContext = {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext
     }()
 
-    //MARK: - 저장된 메모 불러오기 메소드
-    func fetch(Keyword text: String? = nil) -> [MemoData] {
+    // 전체 데이터 불러오는 메소드
+    func fetch(keyword text: String? = nil) -> [MemoData] {
+
         var memolist = [MemoData]()
 
         // 1. 요청 객체 생성
         let fetchRequest: NSFetchRequest<MemoMO> = MemoMO.fetchRequest()
 
         // 1-1. 최신 글 순으로 정렬하도록 정렬 객체 생성
-        let regdateDesc = NSSortDescriptor(key: "regdate", ascending: false)
-        fetchRequest.sortDescriptors = [regdateDesc]
+        let regdate = NSSortDescriptor(key: "regdate", ascending: false)
+        fetchRequest.sortDescriptors = [regdate]
 
-        // 1-2. 검색 키워드가 있을 경우 검색 조건 추가
+        // 1-2 검색 키워드가 있을 경우 검색 조건 추가
         if let t = text, !(t.isEmpty) {
             fetchRequest.predicate = NSPredicate(format: "contents CONTAINS[c] %@", t)
         }
 
         do {
-            let resultset = try self.context.fetch(fetchRequest)
+            let resultSet = try self.context.fetch(fetchRequest)
 
             // 2. 읽어온 결과 집합을 순회하면서 [MemoData] 타입으로 변환
-            for record in resultset {
-                // 3. MemoData 객체 생성
+            for record in resultSet {
+                // 3. MemoData 객체를 생성
                 let data = MemoData()
 
-                // 4. MemoMO 프로퍼티 값을 MemoData의 프로퍼티로 복사
+                // 4. MemoMO 프로퍼티 값을 MemoData 객체의 프로퍼티로 복사
                 data.title = record.title
                 data.contents = record.contents
                 data.regdate = record.regdate
                 data.objectID = record.objectID
 
-                // 4-1. 이미지가 있을 때만 복사
-                if let image = record.image as Data? {
+                if let image = record.image {
                     data.image = UIImage(data: image)
                 }
-                // 5. MemoData 객체를 memolist 배열에 추가
+
                 memolist.append(data)
             }
         } catch let e as NSError {
-            NSLog("An error has occured : %s", e.localizedDescription)
+            NSLog("An error has occurred : %s", e.localizedDescription)
         }
+
         return memolist
     }
 
-    //MARK: - 새 메모 저장 메소드
-    func insert (_ data: MemoData) {
+    // 데이터 저장 메소드
+    func insert(_ data: MemoData) {
 
         // 1. 관리 객체 인스턴스 생성
-        let object = NSEntityDescription.insertNewObject(forEntityName: "Memo", into: self.context) as! MemoMO
+        let object = NSEntityDescription.insertNewObject(forEntityName: "Memo", into: context) as! MemoMO
 
         // 2. MemoData로부터 값 복사
         object.title = data.title
         object.contents = data.contents
-        object.regdate = data.regdate!
+        object.regdate = data.regdate
 
         if let image = data.image {
-            object.image = image.pngData()!
+            object.image = image.pngData()
         }
 
-        // 3. 영구 저장소에 변경 사항을 반영
+        // 3. 영구 저장소에 해당 데이터 커밋
         do {
             try self.context.save()
+
+            // 로그인되어 있을 경우 서버에 업로드
+            let tk = TokenUtils()
+
+            if tk.getAutoHeader != nil {
+                // 백그라운드에서 처리
+                DispatchQueue.global(qos: .background).async {
+                    // 서버에 데이터를 업로드
+                    let sync = DataSync()
+                    sync.uploadDatum(object)
+                }
+            }
         } catch let e as NSError {
             NSLog("An error has occured : %s", e.localizedDescription)
         }
     }
 
-    //MARK: - 메모 삭제 메소드
+    // 데이터 삭제 메소드
     func delete(_ objectID: NSManagedObjectID) -> Bool {
-        // 삭제할 객체를 찾아, 컨텍스트에서 삭제
-        let object = self.context.object(with: objectID)
-        self.context.delete(object)
+        let object = context.object(with: objectID)
+
+        context.delete(object)
 
         do {
-            // 삭제된 내역을 영구저장소에 반영
             try self.context.save()
             return true
         } catch let e as NSError {
-            NSLog("An error has occurred : %s", e.localizedDescription)
+            NSLog("An error has occured : %s ", e.localizedDescription)
             return false
         }
     }

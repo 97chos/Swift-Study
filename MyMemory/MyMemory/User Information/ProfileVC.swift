@@ -151,8 +151,13 @@ class ProfileVC: UIViewController {
 
                 // 서버와 데이터 동기화
                 let sync = DataSync()
+                // 포그라운드 작업을 방해하지 않도록 백그라운드큐에서 실행하는 큐
                 DispatchQueue.global(qos: .background).async {
                     sync.downloadBackupData()                           // 서버에 저장된 데이터가 있으면 내려받는다.
+                }
+                // 다운로드와 업로드가 동시에 진행
+                DispatchQueue.global(qos: .background).async {
+                    sync.uploadData()                                   // 서버에 저장해야 할 데이터가 있으면 업로드한다.
                 }
             }, fail: { msg in
                 self.indicator.stopAnimating()
