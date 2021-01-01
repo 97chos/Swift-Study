@@ -30,7 +30,6 @@ class RemindersViewController: UIViewController, UITableViewDelegate {
         addbutton.addTarget(self, action: #selector(addAction), for: .touchUpInside)
         addbuttonLayout()
 
-
         var n = "0"
         while UserDefaults.standard.string(forKey: n) != nil {
             if (UserDefaults.standard.string(forKey: n)!) == "" {

@@ -41,7 +41,7 @@ class inputNumViewController: UIViewController {
     override func viewDidLoad() {
 
         let buttonList = [zero,one,two,thr,four,five,six,sev,eig,nine,delete,done]
-        let buttonTitles = ["0","1","2","3","4","5","6","7","8","9","Delete","Done"]
+        let buttonTitles = ["0","1","2","3","4","5","6","7","8","9","delete","Done"]
 
         for n in 0..<buttonList.count {
             self.buttonLayout(button: buttonList[n], title: buttonTitles[n])
@@ -258,6 +258,7 @@ class inputNumViewController: UIViewController {
             self.dismiss(animated: true)
             return
         }
+
         self.delegate?.didInputed(number: number)
         self.ad?.paramValue = number
 

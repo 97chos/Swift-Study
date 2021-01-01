@@ -22,6 +22,7 @@ class ReminderCell: UITableViewCell {
 
     var tf = UITextField()
     var textInputedHandler: ((String?) -> Void)? = nil
+    var textInputedHandler2: ((String?) -> Void)? = nil
 
     func tfLayout() {
         contentView.addSubview(tf)
