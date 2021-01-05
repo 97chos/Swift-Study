@@ -83,6 +83,15 @@ class ProfileVC: UIViewController {
         self.indicator.hidesWhenStopped = true
         self.view.addSubview(indicator)
 
+        self.indicator.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.indicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            self.indicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+        ])
+
+        self.view.bringSubviewToFront(indicator)
+
+
         // 키 체인 저장 여부 확인을 위한 코드
         let tk = TokenUtils()
         if let accessToken = tk.load("kr.co.rubypaper.MyMemory", account: "accessToken") {
@@ -246,6 +255,7 @@ extension ProfileVC: UITableViewDelegate {
             btn.addTarget(self, action: #selector(doLogin(_:)), for: .touchUpInside)
         }
         v.addSubview(btn)
+
 
     }
 }
