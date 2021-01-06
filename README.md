@@ -1,5 +1,5 @@
 # Swift_Study
-## 즐거운 장난감 만들기 공간
+## 장난감 만들기 공간
 ### 1. 숫자게임 & Reminders
 ##### - 숫자 맞추기 게임
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/59811450/103659605-f3051600-4faf-11eb-912a-6850a950e3b7.gif)
