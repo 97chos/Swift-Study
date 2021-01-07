@@ -21,10 +21,7 @@ class ProfileVC: UIViewController {
     // API 호출 상태값을 관리할 변수
     var isCalling = false
 
-    // 이전 화면 복귀용 메소드
-    @IBAction func backProfileVC(_ segue: UIStoryboardSegue) {
-        // 새 계정 입력 화면에서 프로필 화면으로 되돌아오기 위한 표지만 역할만 할 뿐이므로 아무런 내용도 작성하지 않음
-    }
+ 
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,7 +88,6 @@ class ProfileVC: UIViewController {
 
         self.view.bringSubviewToFront(indicator)
 
-
         // 키 체인 저장 여부 확인을 위한 코드
         let tk = TokenUtils()
         if let accessToken = tk.load("kr.co.rubypaper.MyMemory", account: "accessToken") {
@@ -109,6 +105,7 @@ class ProfileVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         // 토큰 인증 여부 체크
         self.tokenValidate()
+        print("viewappeared")
     }
 
     //MARK: - 창 닫기 메소드
@@ -208,7 +205,8 @@ extension ProfileVC: UITableViewDelegate {
 
         cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
         cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 13)
-        cell.accessoryType = .disclosureIndicator
+        cell.accessoryType = self.uInfo.name == nil ? .disclosureIndicator : .none
+        cell.selectionStyle = .none
 
         switch indexPath.row {
         case 0 :
@@ -250,9 +248,11 @@ extension ProfileVC: UITableViewDelegate {
         if self.uInfo.isLogin == true {
             btn.setTitle("로그아웃", for: .normal)
             btn.addTarget(self, action: #selector(doLogout(_:)), for: .touchUpInside)
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
         } else {
             btn.setTitle("로그인", for: .normal)
             btn.addTarget(self, action: #selector(doLogin(_:)), for: .touchUpInside)
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
         }
         v.addSubview(btn)
 
@@ -349,6 +349,25 @@ extension ProfileVC {
         // 1. 키 체인에 엑세스 토큰이 없을 경우 유효성 검증을 진행하지 않음 (로그인이 안 되어있는 경우)
         let tk = TokenUtils()
         guard let header = tk.getAutoHeader else {
+            // 인디케이터 종료
+            self.isCalling = false
+
+            DispatchQueue.main.async {
+                self.tv.reloadData()                                    // 테이블 뷰 갱신
+                self.profileImage.image = self.uInfo.profile            // 추가 이미지 프로필 갱신
+                self.drawBtn()
+            }
+
+            // 서버와 데이터 동기화
+            let sync = DataSync()
+            // 포그라운드 작업을 방해하지 않도록 백그라운드큐에서 실행하는 큐
+            DispatchQueue.global(qos: .background).async {
+                sync.downloadBackupData()                           // 서버에 저장된 데이터가 있으면 내려받는다.
+            }
+            // 다운로드와 업로드가 동시에 진행
+            DispatchQueue.global(qos: .background).async {
+                sync.uploadData()                                   // 서버에 저장해야 할 데이터가 있으면 업로드한다.
+            }
             return
         }
 
@@ -371,8 +390,9 @@ extension ProfileVC {
 
             // 3. 응답 결과 처리
             let resultCode = jsonObject["result_code"] as! Int
-            if resultCode != 0 {        // 응답 결과가 실패일 경우
+            guard resultCode == 0 else {        // 응답 결과가 실패일 경우
                 self.touchID()
+                return
             }
         }
     }

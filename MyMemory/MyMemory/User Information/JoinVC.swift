@@ -14,6 +14,8 @@ class JoinVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var indicator: UIActivityIndicatorView!
 
+    let uInfo = UserInfoManager()
+
     // API 호출 상태값을 관리할 변수
     var isCalling = false
 
@@ -60,7 +62,10 @@ class JoinVC: UIViewController {
             let statusCode = jsonObject["result_code"] as! Int
             if statusCode == 0 {
                 self.alert("가입이 완료되었습니다.") {
-                    self.performSegue(withIdentifier: "backProfileVC", sender: self)
+                    DispatchQueue.main.async {
+                        self.uInfo.login(account: self.fieldAccount.text!, passwd: self.fieldPassword.text!)
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
                 }
             } else {
                 self.isCalling = false
@@ -78,6 +83,7 @@ class JoinVC: UIViewController {
     override func viewDidLoad() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.tableFooterView = UIView()
 
         self.profile.layer.cornerRadius = self.profile.frame.width / 2
         self.profile.layer.masksToBounds = true
